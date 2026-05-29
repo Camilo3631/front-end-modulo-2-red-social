@@ -3,7 +3,7 @@ function registrar() {
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-contrasena").value;
 
-  fetch(`http://localhost:3000/api/clientes/registrar-cliente`, {
+  fetch(  {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

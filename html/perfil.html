@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Perfil</title>
+  <link rel="stylesheet" href="../css/perfil.css"/>
+</head>
+<body>
+
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <div class="nav-links">
+      <a href="perfil.html" class="active">Perfil</a>
+      <a href="contactos.html">Contactos</a>
+    </div>
+    <div class="nav-icons">
+      <button id="btn-nueva-publicacion" title="Nueva publicación">+</button>
+      <a href="ajustes.html" title="Ajustes">⚙</a>
+    </div>
+  </nav>
+
+  <!-- ── INFO USUARIO ── -->
+  <section class="info-usuario">
+    <div class="info-izquierda">
+      <img src="" alt="Foto de perfil" class="foto-perfil" id="foto-perfil"/>
+      <span class="username" id="username">username_</span>
+    </div>
+    <div class="info-contadores">
+      <div class="contador">
+        <span class="contador-num" id="num-publicaciones">0</span>
+        <span class="contador-label">Publicaciones</span>
+      </div>
+      <div class="contador">
+        <span class="contador-num" id="num-contactos">0</span>
+        <span class="contador-label">Contactos</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TABS ── -->
+  <div class="tabs">
+    <button class="tab active" onclick="cambiarTab('publicaciones', this)">Publicaciones</button>
+    <button class="tab" onclick="cambiarTab('megusta', this)">Me gusta</button>
+  </div>
+
+  <!-- ── PUBLICACIONES ── -->
+  <section id="seccion-publicaciones">
+    <div id="lista-publicaciones">
+      <!-- Las publicaciones se cargan aquí con JS -->
+    </div>
+    <p id="msg-publicaciones"></p>
+  </section>
+
+  <!-- ── ME GUSTA (oculto por defecto) ── -->
+  <section id="seccion-megusta" style="display:none;">
+    <p>Aún no hay publicaciones guardadas.</p>
+  </section>
+
+  <script src="../js/perfil.js"></script>
+
+</body>
+</html>
