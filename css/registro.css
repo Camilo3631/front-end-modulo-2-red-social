@@ -1,0 +1,90 @@
+body {
+  font-family: sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+ 
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 380px;
+}
+ 
+h1 {
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+}
+ 
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+ 
+label {
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: #555;
+}
+ 
+input {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+ 
+input:focus {
+  outline: none;
+  border-color: #333;
+}
+ 
+.field-error {
+  font-size: 0.75rem;
+  color: #c0392b;
+  margin-top: 0.25rem;
+  min-height: 1rem;
+}
+ 
+.msg {
+  font-size: 0.82rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  display: none;
+}
+ 
+.msg.ok    { display: block; background: #e6f9ec; color: #2a7a3b; }
+.msg.error { display: block; background: #fdecea; color: #c0392b; }
+ 
+button {
+  width: 100%;
+  padding: 0.65rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+ 
+button:hover { background: #333; }
+ 
+.enlace {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  color: #555;
+  text-align: center;
+}
+ 
+.enlace a {
+  color: #111;
+  font-weight: 600;
+}
