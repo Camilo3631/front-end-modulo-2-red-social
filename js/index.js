@@ -22,8 +22,8 @@ function iniciarSesion() {
           .then((html) => {
             document.getElementById("contenido").innerHTML = html;
           });
-
-        localStorage.setItems("email", data.usuarioVerificado.email);
+         // Guardar es con setItem singular no plular
+        localStorage.setItem("email", data.usuarioVerificado.email);
       } else {
         document.getElementById("error-inicio-sesion").innerText =
           "Credenciales incorrectas";
