@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Contactos</title>
+  <link rel="stylesheet" href="../css/contactos.css"/>
+</head>
+<body>
+ 
+  <!-- ── NAVBAR ── -->
+  <nav>
+    <div class="nav-links">
+      <a href="perfil.html">Perfil</a>
+      <a href="contactos.html" class="active">Contactos</a>
+    </div>
+  </nav>
+ 
+  <!-- ── CONTENIDO: dos columnas ── -->
+  <div class="layout">
+ 
+    <!-- ── COLUMNA IZQUIERDA: lista de contactos ── -->
+    <aside class="columna-contactos">
+      <ul id="lista-contactos">
+        <!-- Se rellena con JS -->
+      </ul>
+      <p id="msg-contactos"></p>
+    </aside>
+ 
+    <!-- ── COLUMNA DERECHA: buscador + publicaciones ── -->
+    <main class="columna-principal">
+ 
+      <!-- Buscador -->
+      <div class="buscador">
+        <input type="text" id="input-buscar" placeholder="@username_" />
+        <button onclick="buscarUsuario()">Buscar</button>
+      </div>
+ 
+      <!-- Resultados del buscador -->
+      <div id="resultados-busqueda"></div>
+ 
+      <!-- Publicaciones del contacto seleccionado -->
+      <div id="publicaciones-contacto"></div>
+ 
+    </main>
+ 
+  </div>
+ 
+  <script src="../js/contactos.js"></script>
+ 
+</body>
+</html>
+ 
