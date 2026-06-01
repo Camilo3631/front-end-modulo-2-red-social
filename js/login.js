@@ -19,6 +19,13 @@ function iniciarSesion() {
       document.getElementById("login-email").value = ""
       document.getElementById("login-contrasena").value = ""
 
+      if (data.estado) {
+        fetch('/html/contactos.html').then(res => res.text()).then(html => { 
+          document.getElementById('contenido').innerHTML= html})
+      } else {
+        document.getElementById('error-inicio-sesion').innerText = "Credenciales incorrectas"
+      }
+
       
     });
 }

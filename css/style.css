@@ -57,3 +57,7 @@ button {
 button:hover {
   background: #333;
 }
+
+.field-error {
+  color: red;
+}
