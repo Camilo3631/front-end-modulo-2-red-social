@@ -3,16 +3,25 @@ function registrar() {
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-contrasena").value;
 
-  fetch(`http://localhost:3000/api/clientes/registrar-cliente`, {
+  fetch(`http://localhost:3000/usuarios/registrar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ usuario: username, email: email, contrasena: password }),
+    body: JSON.stringify({
+      username: username,
+      email: email,
+      contrasena: password,
+    }),
   })
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+
+      document.getElementById("reg-username").value = ""
+      document.getElementById("reg-email").value = ""
+      document.getElementById("reg-contrasena").value = ""
+
       if (data.data.insertedId) {
         document.getElementById("register-message").innerText =
           "usuario registrado";
