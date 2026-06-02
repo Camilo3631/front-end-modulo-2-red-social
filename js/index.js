@@ -17,13 +17,18 @@ function iniciarSesion() {
       console.log(data);
 
       if (data.estado) {
+        
         fetch("../html/contactos.html")
           .then((res) => res.text())
           .then((html) => {
-            document.getElementById("contenido").innerHTML = html;
+            document.getElementById("contacto-contenido").innerHTML = html;
+            console.log(data)
           });
 
-        localStorage.setItems("email", data.usuarioVerificado.email);
+          localStorage.setItem("id", data.usuarioVerificado._id);
+          localStorage.setItem("email", data.usuarioVerificado.email);
+          localStorage.setItem("username", data.usuarioVerificado.username);
+
       } else {
         document.getElementById("error-inicio-sesion").innerText =
           "Credenciales incorrectas";
@@ -31,4 +36,12 @@ function iniciarSesion() {
     });
 }
 
-function navPerfil() {}
+function navPerfil() {
+  fetch("/..html/perfil.html").then(res=> res.text()).then(html => {
+    document.getElementById("perfil-contenido").innerHTML = html;
+    let usernamePerfil = localStorage.getItem("username");
+
+    document.getElementById("username").innerText = usernamePerfil;
+
+  })
+}
