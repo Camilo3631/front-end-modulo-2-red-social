@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Perfil</title>
-  <link rel="stylesheet" href="../css/perfil.css"/>
+  <link rel="stylesheet" href="../css/style.css"/>
 </head>
 
 
@@ -19,7 +19,7 @@
     </div>
     <div class="nav-icons">
       <button id="btn-nueva-publicacion" title="Nueva publicación">+</button>
-      <a href="ajustes.html" title="Ajustes">⚙</a>
+      <button onclick="toggleConfig()" title="Ajustes">⚙</button>
     </div>
   </nav>
 
@@ -60,8 +60,47 @@
     <p>Aún no hay me gusta.</p>
   </section>
 
+  <section>
+     <!-- ── PANEL CONFIGURACIÓN ── -->
+      <aside class="panel-config" id="panel-config">
+   
+        <h2>Avatar</h2>
+        <div class="avatar-opciones">
+          <img src="/iconos/icono_1.png" alt="Avatar 1" class="avatar-opcion" onclick="seleccionarAvatar(this)"/>
+          <img src="/iconos/icono_2.png" alt="Avatar 2" class="avatar-opcion" onclick="seleccionarAvatar(this)"/>
+          <img src="/iconos/icono_3.png" alt="Avatar 3" class="avatar-opcion" onclick="seleccionarAvatar(this)"/>
+          <img src="/iconos/icono_4.png" alt="Avatar 4" class="avatar-opcion" onclick="seleccionarAvatar(this)"/>
+        </div>
+   
+        <h2>Cambiar username</h2>
+        <div class="config-fila">
+          <input type="text" id="nuevo-username" placeholder="Nuevo username" />
+          <button onclick="cambiarUsername()">Enviar</button>
+        </div>
+        <p class="msg" id="msg-username"></p>
+   
+        <h2>Cambiar contraseña</h2>
+        <div class="config-fila">
+          <input type="password" id="nueva-contrasena" placeholder="Nueva contraseña" />
+          <button onclick="cambiarContrasena()">Enviar</button>
+        </div>
+        <p class="msg" id="msg-contrasena"></p>
+   
+        <div class="config-botones">
+          <button class="btn-cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
+          <button class="btn-eliminar-cuenta" onclick="eliminarCuenta()">Eliminar cuenta</button>
+        </div>
+   
+      </aside>
+   
+    </div>
+
 </main>
-  <script src="../js/perfil.js"></script>
+
+</section>
+
+
+<script src="../js/ navigation.js"></script>
 
 </body>
 </html>
