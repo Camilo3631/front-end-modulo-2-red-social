@@ -1,4 +1,5 @@
 
+
 body {
   font-family: sans-serif;
   background: #f0f0f0;
@@ -7,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 /* ── NAVBAR ── */
 nav {
   display: flex;
@@ -41,14 +43,26 @@ nav {
   gap: 0.75rem;
 }
 
-.nav-icons button,
-.nav-icons a {
+.nav-icons button {
   background: none;
   border: none;
   font-size: 1.3rem;
   cursor: pointer;
   color: #111;
-  text-decoration: none;
+}
+
+/* ── LAYOUT ── */
+.layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ── CONTENIDO PERFIL ── */
+.perfil-contenido {
+  flex: 1;
+  overflow-y: auto;
+  transition: flex 0.35s ease;
 }
 
 /* ── INFO USUARIO ── */
@@ -119,7 +133,6 @@ nav {
   cursor: pointer;
   color: #777;
   margin-bottom: -1px;
-
 }
 
 .tab.active {
@@ -188,11 +201,130 @@ nav {
   font-size: 0.75rem;
 }
 
-.card-acciones button:hover {
-  background: #bbb;
-}
+.card-acciones button:hover { background: #bbb; }
 
 #msg-publicaciones {
   font-size: 0.85rem;
   color: #777;
 }
+
+/* ── PANEL CONFIGURACIÓN ── */
+.panel-config {
+  width: 0;
+  overflow: hidden;
+  background: #fff;
+  border-left: 1px solid #ddd;
+  border-radius: 12px 0 0 12px;
+  transition: width 0.35s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 0;
+}
+
+.panel-config.abierto {
+  width: 360px;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.panel-config h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ── AVATARES ── */
+.avatar-opciones {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.avatar-opcion {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  border: 3px solid transparent;
+  object-fit: cover;
+}
+
+.avatar-opcion.seleccionado {
+  border-color: #111;
+}
+
+/* ── FILAS DE INPUT ── */
+.config-fila {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.config-fila input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 0.88rem;
+  outline: none;
+}
+
+.config-fila input:focus {
+  border-color: #333;
+}
+
+.config-fila button {
+  padding: 0.6rem 1.1rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.config-fila button:hover { background: #333; }
+
+/* ── MENSAJES ── */
+.msg {
+  font-size: 0.78rem;
+  color: #777;
+  min-height: 1rem;
+}
+
+/* ── BOTONES FINALES ── */
+.config-botones {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.btn-cerrar-sesion {
+  width: 100%;
+  padding: 0.7rem;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-cerrar-sesion:hover { background: #333; }
+
+.btn-eliminar-cuenta {
+  width: 100%;
+  padding: 0.7rem;
+  background: #fff;
+  color: #111;
+  border: 1px solid #111;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-eliminar-cuenta:hover { background: #f5f5f5; }
