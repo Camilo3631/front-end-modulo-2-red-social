@@ -21,7 +21,7 @@ function iniciarSesion() {
         fetch("../html/contactos.html")
           .then((res) => res.text())
           .then((html) => {
-            document.getElementById("contacto-contenido").innerHTML = html;
+            document.getElementById("contenido").innerHTML = html;
             console.log(data)
           });
 

@@ -1,13 +1,14 @@
-    h1 { margin-bottom: 1rem; }
- 
-    /* ── Secciones ── */
-    .seccion {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 3rem;
-      margin-bottom: 1.5rem;
-      max-width: 480px;
-      
-    }
-    
+h1 {
+  margin-bottom: 1rem;
+}
+
+/* ── Secciones ── */
+.seccion {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 3rem;
+  margin-bottom: 1.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
