@@ -1,10 +1,10 @@
 const inputBusqueda = document.getElementById('input-buscar');
 
-const resltadosbusqueda = document.getElementById('resultados-busqueda');
+const resultadosBusqueda = document.getElementById('resultados-busqueda');
 
 let usuarios = [];
 
-const cargarUsuarios = () => {
+const cargarUsuarios = async  () => {
 
     try  {
      
@@ -12,7 +12,7 @@ const cargarUsuarios = () => {
         const data = await response.json();
         usuarios = data;
 
-        mostrarUsarios(usuarios);
+        mostrarUsuarios(usuarios);
 
     } catch (error) {
         alert('Error loading users');
@@ -21,15 +21,37 @@ const cargarUsuarios = () => {
 
 const buscarUsuario = () => {
 
-    const texto = inputBuscar.value.toLowerCase();
+    const texto = inputBusqueda.value.toLowerCase();
 
-    const usuariosFiltrados = usuarios.filter(usuario => usuario.username.toLowerCase().incluides(texto));
+    const usuariosFiltrados = usuarios.filter(usuario => usuario.username.toLowerCase().includes(texto));
 
-    mostrarUsuarios(usariosFiltrados);
+    mostrarUsuarios(usuariosFiltrados);
 };
 
 
+const mostrarUsuarios = (usuarios) => {
 
+    resultadosBusqueda.innerHTML = '';
+
+    usuarios.forEach(usuario => {
+
+        resultadosBusqueda.innerHTML += `
+        
+        <div class="card-usuario">
+
+         <h3>${usuario.username}</h3>
+
+         <button>
+           Follow
+         </button>
+        
+
+        </div>`
+
+    });
+};
+
+cargarUsuarios();
 
 
 
