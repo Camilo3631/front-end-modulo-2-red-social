@@ -1,6 +1,7 @@
 @import url("registro_login.css");
 @import url("perfil.css");
 @import url("contactos.css");
+@import url("chats.css");
 
 * {
   box-sizing: border-box;
