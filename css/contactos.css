@@ -1,21 +1,21 @@
 /* ── LAYOUT DOS COLUMNAS ── */
-#layout-contactos {
+.layout-contactos {
   display: flex;
-  flex-direction: row;
   flex: 1;
   overflow: hidden;
 }
+ 
 
 /* ── COLUMNA IZQUIERDA ── */
-#columna-contactos {
-  width: 33.33%;
+.columna-contactos {
+  width: 320px;
   min-width: 280px;
   overflow-y: auto;
   border-right: 1px solid #ddd;
   padding: 1rem 0;
 }
 
-#lista-contactos {
+.lista-contactos {
   list-style: none;
 }
 
