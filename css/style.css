@@ -19,6 +19,11 @@ body {
   color: #111;
 }
 
+main {
+  width: 100%;
+  height: 100vh;
+}
+
 span {
   font-size: 0.85rem;
   line-height: 2rem;
@@ -29,31 +34,34 @@ label {
   display: block;
   font-size: 0.85rem;
   margin-bottom: 0.25rem;
+  margin-top: 1rem;
   color: #555;
 }
+
+/*///////////////////////*/
 input {
   width: 100%;
   padding: 0.6rem 0.8rem;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 0.9rem;
-  margin-bottom: 0.9rem;
 }
+
 input:focus {
   outline: none;
   border-color: #333;
 }
 
+/*//////////////////////*/
 button {
-  width: 100%;
   padding: 0.65rem;
   background: #111;
   color: #fff;
   border: none;
-  border-radius: 6px;
   font-size: 0.9rem;
   cursor: pointer;
 }
+
 button:hover {
   background: #333;
 }
@@ -64,6 +72,9 @@ button:hover {
 
 /* ── NAVBAR ── */
 nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 0.75rem 1.5rem;
   background: #f0f0f0;
 }
@@ -71,7 +82,6 @@ nav {
 .nav-links {
   display: flex;
   gap: 0.5rem;
-  
 }
 
 .nav-links a {
@@ -86,4 +96,26 @@ nav {
 .nav-links a.active {
   background: #111;
   color: #fff;
+}
+
+.nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-icons button {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #111;
+  padding: 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100%;
 }

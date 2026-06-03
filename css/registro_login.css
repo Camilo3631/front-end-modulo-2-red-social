@@ -2,13 +2,31 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.contenido-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto 0;
+}
+
 /* ── Secciones ── */
 .seccion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 3rem;
   margin-bottom: 1.5rem;
-  max-width: 480px;
+  width: 400px;
+  max-height: 500px;
   margin: 0 auto;
+}
+
+#btn-iniciar-sesion, #btn-registro {
+  width: 100%;
+  margin: 0.5rem 0;
+  border-radius: 20px;
 }

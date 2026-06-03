@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
   <title>Contactos</title>
-  <link rel="stylesheet" href="../css/contactos.css"/>
+  <link rel="stylesheet" href="../css/style.css"/>
 </head>
 
 <body>
-  <div class="contenido-pantalla" id="contenido"> 
+  <main class="contenido-pantalla" id="contenido"> 
   <!-- ── NAVBAR ── -->
   <nav>
     <div class="nav-links">
@@ -16,18 +14,20 @@
   </nav>
  
   <!-- ── CONTENIDO: dos columnas ── -->
-  <div class="layout">
+  <div id="layout-contactos">
  
     <!-- ── COLUMNA IZQUIERDA: lista de contactos ── -->
-    <aside class="columna-contactos">
+    <aside id="columna-contactos">
       <ul id="lista-contactos">
         <!-- Se rellena con JS -->
+         <li>Contacto 1</li>
+         <li>Contacto 2</li>
       </ul>
       <p id="msg-contactos"></p>
     </aside>
  
     <!-- ── COLUMNA DERECHA: buscador + publicaciones ── -->
-    <main class="columna-principal">
+    <div class="columna-principal">
  
       <!-- Buscador -->
       <div class="buscador">
@@ -41,11 +41,10 @@
       <!-- Publicaciones del contacto seleccionado -->
       <div id="publicaciones-contacto"></div>
  
-    </main>
+    </div>
  
   </div>
-  </div>
-  <script src="../js/index.js"></script>
+  </main>
  
 </body>
 </main>
