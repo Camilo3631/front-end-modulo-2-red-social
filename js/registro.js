@@ -24,7 +24,7 @@ function registrar() {
       document.getElementById("reg-email").value = ""
       document.getElementById("reg-contrasena").value = ""
 
-      if (data.data.insertedId) {
+      if (data.insertedId) {
         document.getElementById("register-message").innerText =
           "Usuario registrado";
         setTimeout(() => {
