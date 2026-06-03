@@ -1,22 +1,16 @@
 /* ── LAYOUT DOS COLUMNAS ── */
 .layout-contactos {
   display: flex;
-  flex: 1;
-  overflow: hidden;
+  flex-direction: row;
 }
  
 
 /* ── COLUMNA IZQUIERDA ── */
-.columna-contactos {
-  width: 320px;
+#columna-contactos {
+  width: 33.33%;
   min-width: 280px;
-  overflow-y: auto;
   border-right: 1px solid #ddd;
   padding: 1rem 0;
-}
-
-.lista-contactos {
-  list-style: none;
 }
 
 /* ── FILA DE CONTACTO ── */
@@ -79,7 +73,7 @@
 .columna-principal {
   flex: 1;
   overflow-y: auto;
-  width: 60%;
+  width: 66.66%;
   padding: 1rem 1.5rem;
   display: flex;
   flex-direction: column;
