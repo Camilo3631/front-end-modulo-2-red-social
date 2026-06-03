@@ -18,13 +18,13 @@ function navPerfil() {
 
 //perfil
 // ── SELECCIONAR AVATAR ────────────────────────────────────────────────────────
-function seleccionarAvatar(img) {
+function seleccionarAvatar(i) {
   // Quitar selección anterior
   document.querySelectorAll(".avatar-opcion").forEach(a => a.classList.remove("seleccionado"));
-  img.classList.add("seleccionado");
+  i.classList.add("seleccionado");
  
   // Actualizar foto de perfil en pantalla
-  document.getElementById("foto-perfil").src = img.src;
+  document.getElementById("foto-perfil").src = i.src;
 }
 
 //chats
