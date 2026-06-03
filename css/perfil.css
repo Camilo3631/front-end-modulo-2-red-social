@@ -264,3 +264,17 @@ aside h2 {
 .btn-eliminar-cuenta:hover {
   background: #f5f5f5;
 }
+
+.btn-cerrar-panel {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #111;
+  padding: 0;
+  margin-bottom: -0.5rem;
+}
+
