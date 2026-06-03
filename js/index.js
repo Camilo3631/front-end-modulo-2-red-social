@@ -36,12 +36,4 @@ function iniciarSesion() {
     });
 }
 
-function navPerfil() {
-  fetch("/..html/perfil.html").then(res=> res.text()).then(html => {
-    document.getElementById("perfil-contenido").innerHTML = html;
-    let usernamePerfil = localStorage.getItem("username");
 
-    document.getElementById("username").innerText = usernamePerfil;
-
-  })
-}

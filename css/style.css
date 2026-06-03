@@ -1,6 +1,7 @@
 @import url("registro_login.css");
 @import url("perfil.css");
 @import url("contactos.css");
+@import url("chats.css");
 
 * {
   box-sizing: border-box;
@@ -91,6 +92,7 @@ nav {
   border-radius: 20px;
   font-size: 0.9rem;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .nav-links a.active {
