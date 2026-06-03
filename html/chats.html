@@ -15,7 +15,9 @@
 
       <!-- Header del chat -->
       <div class="chat-header">
-        <img src="" alt="Foto contacto" class="foto"/>
+        <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
+        <i class="fa-solid fa-user"></i>
+      </div>
         <span id="chat-username">Nombre de usuario</span>
         <button class="btn-cerrar" onclick="cerrarChat()">✕</button>
       </div>
@@ -54,7 +56,7 @@
       <!-- Perfil propio -->
       <div class="lateral-perfil">
         <h2>Perfil</h2>
-        <div class="perfil-fila">
+        <div class="perfil-fila" onclick="abrirPerfil()">
           <img src="" class="foto"/>
           <span id="mi-username">Nombre de usuario</span>
         </div>
@@ -64,7 +66,7 @@
 
   </div>
 
-  <script src="../js/chat.js"></script>
+  <script src="../js/ navigation.js"></script>
 
 </body>
 </html>

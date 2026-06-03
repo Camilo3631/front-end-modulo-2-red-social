@@ -27,3 +27,11 @@ function seleccionarAvatar(img) {
   document.getElementById("foto-perfil").src = img.src;
 }
 
+//chats
+function cerrarChat(){
+  window.location.href = "contactos.html";
+}
+
+function abrirPerfil(){
+  window.location.href = "perfil.html"; 
+}
