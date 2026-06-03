@@ -202,6 +202,10 @@ aside h2 {
   cursor: pointer;
   border: 3px solid transparent;
   object-fit: cover;
+  color:#fff;
+  font-size: 1rem;
+  text-align: center;
+  padding-top: 1rem;
 }
 
 .avatar-opcion.seleccionado {
