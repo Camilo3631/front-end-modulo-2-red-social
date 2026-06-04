@@ -20,7 +20,6 @@
       <a onclick="navContactos()">Contactos</a>
     </div>
     <div class="nav-icons">
-      <button id="btn-nueva-publicacion" title="Nueva publicación">+</button>
       <button onclick="toggleConfig()" title="Ajustes">⚙</button>
     </div>
   </nav>
@@ -44,6 +43,15 @@
       </div>
     </div>
   </section>
+
+  <section id="nueva-publicacion">
+  <textarea id="texto-publicacion" placeholder="Crear una nueva publicación"></textarea>
+  <div class="pub-footer">
+    
+    <button onclick="crearPublicacion()">Publicar</button>
+  </div>
+  <p class="msg" id="msg-nueva-pub"></p>
+</section>
 
   <!-- ── TABS ── -->
   <div class="tabs">
@@ -113,5 +121,6 @@
 </section>
 
 <script src="../js/ navigation.js"></script>
+<script src="../js/index.js"></script>
 </body>
 </html>
