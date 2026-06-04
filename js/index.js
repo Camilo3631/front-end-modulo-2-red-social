@@ -1,7 +1,8 @@
-import { buscarUsuarios, mostrarUsuarios
+import {
+  buscarUsuarios, mostrarUsuarios
 } from "./contactos.js"
 
-const url= 'http://localhost:3000';
+const url = 'http://localhost:3000';
 
 
 document.getElementById('btn-iniciar-sesion').addEventListener('click', iniciarSesion)
@@ -38,32 +39,34 @@ function iniciarSesion() {
 
 
 //Mostrat lista contactos agregados en columna izq de contactos
-function listaContactos(data){
+function listaContactos(data) {
   fetch("../html/contactos.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("contenido").innerHTML = html;
-            
-            //funcion en contacto.js
-            document.getElementById('btn-buscarUsuarios').addEventListener('click', ()=>{buscarUsuarios(document.getElementById('input-buscar').value.toLowerCase())});
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("contenido").innerHTML = html;
 
-          });
-         let usernameLogueado = data.usuarioVerificado.username
+      //funcion en contacto.js
+      document.getElementById('btn-buscarUsuarios').addEventListener('click', () => { buscarUsuarios(document.getElementById('input-buscar').value.toLowerCase()) });
 
-          fetch(`${url}/contactos/${usernameLogueado}`).then(res => res.json()).then(data => {
-            data.forEach(contacto => {
-              let contactoUsername = contacto.username_contacto1 === usernameLogueado ? contacto.username_contacto2 : contacto.username_contacto1
+    });
+  let usernameLogueado = data.usuarioVerificado.username
 
-              
-              document.getElementById('lista-contactos').innerHTML += `
-              <div>
-              ${contactoUsername}
-              <button>no seguir</button>
-              <i class="fa-solid fa-comment" onclick="btnChat('${contactoUsername}')"></i>
+  fetch(`${url}/contactos/${usernameLogueado}`).then(res => res.json()).then(data => {
+    data.forEach(contacto => {
+      let contactoUsername = contacto.username_contacto1 === usernameLogueado ? contacto.username_contacto2 : contacto.username_contacto1
+
+
+      document.getElementById('lista-contactos').innerHTML += `
+              <div class="card-contactos" onclick="btnChat('${contactoUsername}')">
+                <p><strong>${contactoUsername}</strong></p>
+                <div class="btns-contacto">
+                  <button><i class="fa-solid fa-x" id="dejarSeguir"></i> Dejar de seguir</button>
+                </div>
               </div>
               `
-            })
-          })}
+    })
+  })
+}
 
 
 //Para personalizar pantalla de perfil/contactos con datos del usuario
@@ -101,7 +104,7 @@ async function crearPublicacion() {
 
 
 //Pantalla chat
-window.btnChat = function btnChat(usernameContacto){
-console.log(usernameContacto)
-  
+window.btnChat = function btnChat(usernameContacto) {
+  console.log(usernameContacto)
+
 }

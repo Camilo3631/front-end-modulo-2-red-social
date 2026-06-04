@@ -55,6 +55,7 @@ input:focus {
 
 /*//////////////////////*/
 button {
+  border-radius: 20px;
   padding: 0.65rem;
   background: #111;
   color: #fff;
@@ -123,4 +124,10 @@ nav {
   align-items: left;
   width: 100%;
 
+}
+
+i {
+  color: #111;
+  font-size: 38px;
+  line-height: 0;
 }
