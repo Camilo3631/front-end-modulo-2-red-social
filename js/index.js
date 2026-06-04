@@ -1,4 +1,10 @@
+import { buscarUsuarios, mostrarUsuarios
+} from "./contactos.js"
+
 const url= 'http://localhost:3000';
+
+document.getElementById('btn-iniciar-sesion').addEventListener('click', iniciarSesion)
+
 
 function iniciarSesion() {
   const email = document.getElementById("login-email").value;
@@ -21,15 +27,8 @@ function iniciarSesion() {
       if (data.estado) {
 
         guardarUsuario(data)
+
         listaContactos(data)
-        
-
-
-        fetch("../html/contactos.html")
-          .then((res) => res.text())
-          .then((html) => {
-            document.getElementById("contenido").innerHTML = html;
-          });
 
       } else {
         document.getElementById("error-inicio-sesion").innerText =
@@ -38,24 +37,32 @@ function iniciarSesion() {
     });
 }
 
+
+//Mostrat lista contactos agregados en columna izq de contactos
 function listaContactos(data){
   fetch("../html/contactos.html")
           .then((res) => res.text())
           .then((html) => {
             document.getElementById("contenido").innerHTML = html;
-            console.log(data)
-          });
-         let username = data.usuarioVerificado.username
+            
+            //funcion en contacto.js
+            document.getElementById('btn-buscarUsuarios').addEventListener('click', ()=>{buscarUsuarios(document.getElementById('input-buscar').value.toLowerCase())});
 
-          fetch(`${url}/contactos/${username}`).then(res => res.json()).then(data => {
+          });
+         let usernameLogueado = data.usuarioVerificado.username
+
+          fetch(`${url}/contactos/${usernameLogueado}`).then(res => res.json()).then(data => {
             data.forEach(contacto => {
-              let contactoUsername = contacto.username_contacto1 === username ? contacto.username_contacto2 : contacto.username_contacto1
+              let contactoUsername = contacto.username_contacto1 === usernameLogueado ? contacto.username_contacto2 : contacto.username_contacto1
+              
+              document.getElementById('lista-contactos').innerHTML += `
+              <div>
+              ${contactoUsername}
+              <button>no seguir</button>
+              <i class="fa-solid fa-comment"></i>
+              </div>
+              `
             })
-            document.getElementById('lista-contactos').innerHTML += `
-            <div>
-            ${contactoUsername}
-            </div>
-            `
           })
 }
 
