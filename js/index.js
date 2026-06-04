@@ -53,12 +53,13 @@ function listaContactos(data){
           fetch(`${url}/contactos/${usernameLogueado}`).then(res => res.json()).then(data => {
             data.forEach(contacto => {
               let contactoUsername = contacto.username_contacto1 === usernameLogueado ? contacto.username_contacto2 : contacto.username_contacto1
+
               
               document.getElementById('lista-contactos').innerHTML += `
               <div>
               ${contactoUsername}
               <button>no seguir</button>
-              <i class="fa-solid fa-comment"></i>
+              <i class="fa-solid fa-comment" onclick="btnChat('${contactoUsername}')"></i>
               </div>
               `
             })
@@ -96,4 +97,11 @@ async function crearPublicacion() {
   } else {
     msg.textContent = data.mensaje || "Error al publicar.";
   }
+}
+
+
+//Pantalla chat
+window.btnChat = function btnChat(usernameContacto){
+console.log(usernameContacto)
+  
 }
