@@ -21,6 +21,15 @@ function iniciarSesion() {
       if (data.estado) {
         guardarUsuario(data);
         listaContactos(data);
+
+        guardarUsuario(data);
+        listaContactos(data);
+
+        fetch("../html/contactos.html")
+          .then((res) => res.text())
+          .then((html) => {
+            document.getElementById("contenido").innerHTML = html;
+          });
       } else {
         document.getElementById("error-inicio-sesion").innerText =
           "Credenciales incorrectas";
