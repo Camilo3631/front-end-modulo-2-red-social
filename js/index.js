@@ -79,8 +79,7 @@ function guardarUsuario(data) {
   localStorage.setItem("email", data.usuarioVerificado.email);
   localStorage.setItem("username", data.usuarioVerificado.username);
 }
-<<<<<<< HEAD
-=======
+
 
 //Crear publicacion
 async function crearPublicacion() {
@@ -92,7 +91,7 @@ async function crearPublicacion() {
     return;
   }
 
-  const res = await fetch("/publicaciones/crear-publicacion", {
+  const res = await fetch(`${url}/publicaciones/crear-publicacion`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ texto }),
@@ -121,4 +120,4 @@ window.btnChat = function btnChat(usernameContacto) {
     })
 
 }
->>>>>>> 4c193ae91e1f9eed98ae4ae70fccffbe0fd1cc8d
+
