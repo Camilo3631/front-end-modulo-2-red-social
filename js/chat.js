@@ -1,19 +1,41 @@
-const url = 'http://localhost:3000';
+const url = "http://localhost:3000";
 
 export function obtenerMensajes(usernameContacto) {
-const userLog = localStorage.getItem('username')
-console.log(userLog, usernameContacto)
+  const userLog = localStorage.getItem("username");
+
   fetch(`${url}/chat/mostrar-mensajes/${userLog}/${usernameContacto}`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
+      enviarMensaje(usernameContacto);
+      data.forEach((mensaje) => {
+        document.getElementById("chat-mensajes").innerHTML += `
+            <div class="burbuja-chat">
+                <p>${mensaje.emisor}</p>
+                <p>${mensaje.mensaje}</p>
+                <span>${mensaje.fecha}</span>
+            </div>
+          `;
+      });
+    });
+}
 
-      data.forEach(mensaje => {
-          document.getElementById('chat-mensajes').innerHTML += `
-            <p>${mensaje.mensaje}</p>
-          `
+export function enviarMensaje(usernameContacto) {
+  const mensaje = document.getElementById("input-mensaje").value;
+  const userLog = localStorage.getItem("username");
+console.log(mensaje, userLog)
+  fetch(`${url}/chat/registrar-mensaje`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      emisor: userLog,
+      receptor: usernameContacto,
+      mensaje: mensaje,
+      fecha: new Date().toLocaleString(),
+    }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
 
-      })
-     
     });
 }
