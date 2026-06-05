@@ -79,6 +79,8 @@ function guardarUsuario(data) {
   localStorage.setItem("email", data.usuarioVerificado.email);
   localStorage.setItem("username", data.usuarioVerificado.username);
 }
+<<<<<<< HEAD
+=======
 
 //Crear publicacion
 async function crearPublicacion() {
@@ -119,3 +121,4 @@ window.btnChat = function btnChat(usernameContacto) {
     })
 
 }
+>>>>>>> 4c193ae91e1f9eed98ae4ae70fccffbe0fd1cc8d
