@@ -2,6 +2,10 @@ import {
   buscarUsuarios, mostrarUsuarios
 } from "./contactos.js"
 
+import {
+  obtenerMensajes
+} from "./chat.js"
+
 const url = 'http://localhost:3000';
 
 
@@ -105,6 +109,13 @@ async function crearPublicacion() {
 
 //Pantalla chat
 window.btnChat = function btnChat(usernameContacto) {
-  console.log(usernameContacto)
+  
+   fetch("../html/chats.html")
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("contenido").innerHTML = html;
+      obtenerMensajes(usernameContacto)
+
+    })
 
 }
