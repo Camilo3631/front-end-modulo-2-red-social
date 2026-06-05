@@ -45,14 +45,23 @@
     </div>
   </section>
 
-  <section id="nueva-publicacion">
-  <textarea id="texto-publicacion" placeholder="Crear una nueva publicación"></textarea>
-  <div class="pub-footer">
-    
-    <button onclick="crearPublicacion()">Publicar</button>
-  </div>
-  <p class="msg" id="msg-nueva-pub"></p>
-</section>
+  <!-- ── CREAR PUBLICACION ── -->
+
+  <section class="crear-publicacion">
+    <form id="form-publicacion" onsubmit="publicar(event)">
+      <div class="publicacion-input-container">
+        <input 
+          type="text" 
+          id="texto-publicacion" 
+          placeholder="¿Qué estás pensando?" 
+          required 
+        />
+        <button type="submit">Publicar</button>
+      </div>
+    </form>
+  </section>
+
+  
 
   <!-- ── TABS ── -->
   <div class="tabs">
