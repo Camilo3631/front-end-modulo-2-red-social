@@ -1,10 +1,12 @@
 import { buscarUsuarios, mostrarUsuarios } from "./contactos.js";
-import { obtenerMensajes, enviarMensaje } from "./chat.js"
+import { obtenerMensajes, enviarMensaje } from "./chat.js";
+import { inicializarPerfil, publicar } from "./publicaciones.js";
 
-const url = 'http://localhost:3000';
+const url = "http://localhost:3000";
 
-
-document.getElementById('btn-iniciar-sesion').addEventListener('click', iniciarSesion)
+document
+  .getElementById("btn-iniciar-sesion")
+  .addEventListener("click", iniciarSesion);
 
 document
   .getElementById("btn-iniciar-sesion")
@@ -84,25 +86,35 @@ function guardarUsuario(data) {
   localStorage.setItem("username", data.usuarioVerificado.username);
 }
 
-
-window.enviarMensaje = enviarMensaje
+window.enviarMensaje = enviarMensaje;
 //Pantalla chat
 window.btnChat = function btnChat(usernameContacto) {
-  
-   fetch("../html/chats.html")
+  fetch("../html/chats.html")
     .then((res) => res.text())
     .then((html) => {
       document.getElementById("contenido").innerHTML = html;
-      document.getElementById('chat-username').innerText = usernameContacto
-      obtenerMensajes(usernameContacto)
+      document.getElementById("chat-username").innerText = usernameContacto;
+      obtenerMensajes(usernameContacto);
 
-      document.getElementById('enviarMensaje').innerHTML = `
+      document.getElementById("enviarMensaje").innerHTML = `
       <button onclick="enviarMensaje('${usernameContacto}')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
           </svg>
         </button>
-      `
+      `;
     })
     .catch((err) => console.error("Error en el POST de publicación:", err));
-}
+};
+//Perfil
+window.btnPerfil = function btnPerfil() {
+  fetch("../html/perfil.html")
+    .then((res) => res.text())
+    .then((html) => {
+      document.getElementById("contenido").innerHTML = html;
+      inicializarPerfil();
+    })
+    .catch((err) =>
+      console.error("Error al cargar la pantalla de perfil:", err),
+    );
+};
