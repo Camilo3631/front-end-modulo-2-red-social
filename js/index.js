@@ -1,4 +1,4 @@
-import { buscarUsuarios, mostrarUsuarios } from "./contactos.js";
+import { buscarUsuarios, mostrarUsuarios, obtenerPublicacionesUsuarios } from "./contactos.js";
 import { obtenerMensajes, enviarMensaje } from "./chat.js";
 import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
 
