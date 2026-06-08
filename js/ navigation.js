@@ -6,13 +6,13 @@ function toggleConfig() {
 }
 
 // NAVBAR
-function navContactos() {
-  window.location.href = "contactos.html";
-}
+// function navContactos() {
+//   window.location.href = "contactos.html";
+// }
 
-function navPerfil() {
-  window.location.href = "perfil.html";
-}
+// function navPerfil() {
+//   window.location.href = "perfil.html";
+// }
 
 //perfil
 // SELECCIONAR AVATAR

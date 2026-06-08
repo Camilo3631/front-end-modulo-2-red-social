@@ -20,6 +20,7 @@ export function obtenerMensajes(usernameContacto) {
     });
 }
 
+
 export function enviarMensaje(usernameContacto) {
   const mensaje = document.getElementById("input-mensaje").value;
   const userLog = localStorage.getItem("username");

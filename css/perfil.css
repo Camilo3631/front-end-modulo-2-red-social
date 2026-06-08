@@ -84,6 +84,7 @@
   border-bottom-color: #111;
   color: #111;
   font-weight: 600;
+  border-radius: 0;
 }
 
 .tab:hover {
@@ -345,4 +346,50 @@ aside h2 {
 
 .publicacion-input-container button:hover {
   background: #333;
+}
+
+.publicacion-header {
+  display: flex;
+  flex-direction: row;
+  background-color: #111;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 12px 12px 0 0;
+}
+
+.usuario-info {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.avatar-mini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  min-height: 32px;
+  border-radius: 100px;
+  background-color: #ccc;
+  object-fit: contain;
+
+}
+
+.avatar-mini i{
+  font-size: 24px;
+  text-align: center;
+}
+
+.publicacion-contenido {
+  padding: 2rem 1rem;
+  margin-bottom: 1rem;
+  border:1px solid #111;
+  border-radius: 0 0 12px 12px;
+}
+
+#lista-publicaciones{
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 0 auto;
 }

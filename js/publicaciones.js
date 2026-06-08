@@ -1,14 +1,14 @@
 const usuarioLogueado = localStorage.getItem("username");
 
-// Función que prepara el encabezado y el nombre del perfil
-export function inicializarPerfil() {
-  const usernameElement = document.getElementById("username");
-  if (usernameElement && usuarioLogueado) {
-    usernameElement.innerText = usuarioLogueado;
-  }
-  // Llamamos a cargar los posts del usuario logueado
-  obtenerMisPublicaciones();
-}
+// // Función que prepara el encabezado y el nombre del perfil
+// export function inicializarPerfil() {
+//   const usernameElement = document.getElementById("username");
+//   if (usernameElement && usuarioLogueado) {
+//     usernameElement.innerText = usuarioLogueado;
+//   }
+//   // Llamamos a cargar los posts del usuario logueado
+//   obtenerMisPublicaciones();
+// }
 
 // FUNCIÓN PARA CREAR UNA PUBLICACIÓN (POST)
 export function publicar(event) {
@@ -26,7 +26,7 @@ export function publicar(event) {
     texto: texto,
   };
 
-  fetch("/api/publicaciones/crear-publicacion", {
+  fetch("http://localhost:3000/publicaciones/crear-publicacion", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export function publicar(event) {
     .then((respuesta) => {
       if (respuesta.data) {
         input.value = "";
-        obtenerMisPublicaciones(); // Recargamos para ver la nueva arriba
+        obtenerTodasLasPublicaciones(); // Recargamos para ver la nueva arriba
       } else {
         alert("Error al crear la publicación");
       }
@@ -45,19 +45,20 @@ export function publicar(event) {
     .catch((err) => console.error("Error en el POST:", err));
 }
 
-// FUNCIÓN PARA MOSTRAR LAS PUBLICACIONES DEL USUARIO (GET)
-export function obtenerMisPublicaciones() {
-  const contenedor = document.getElementById("mis-publicaciones");
+
+// FUNCIÓN PARA MOSTRAR LAS PUBLICACIONES
+export function obtenerTodasLasPublicaciones() {
+  const contenedor = document.getElementById("lista-publicaciones");
   if (!contenedor) return;
 
-  fetch(`/api/publicaciones/${usuarioLogueado}`)
+  fetch(`http://localhost:3000/publicaciones/todas`)
     .then((res) => res.json())
     .then((respuesta) => {
       const publicaciones = respuesta.data || [];
       contenedor.innerHTML = "";
 
       if (publicaciones.length === 0) {
-        contenedor.innerHTML = `<p style="text-align:center; color:gray; margin-top:20px;">Aún no has hecho ninguna publicación.</p>`;
+        contenedor.innerHTML = `<p style="text-align:center; color:gray; margin-top:20px;">Aún no hay publicaciones.</p>`;
         return;
       }
 
@@ -83,6 +84,8 @@ export function obtenerMisPublicaciones() {
     })
     .catch((err) => console.error("Error en el GET de publicaciones:", err));
 }
+
+
 
 // Hacemos que la función sea accesible globalmente por si el HTML usa onclick="publicar(event)"
 window.publicar = publicar;
