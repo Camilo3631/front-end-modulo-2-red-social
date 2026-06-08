@@ -205,3 +205,15 @@
   padding: 0.35rem 0.9rem;
   font-size: 0.8rem;
 }
+
+.card-usuario-buscador {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 500px;
+  padding: 1rem;
+  background-color: #ddd;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
