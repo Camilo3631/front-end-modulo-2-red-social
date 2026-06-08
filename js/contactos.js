@@ -2,12 +2,14 @@
 const listaContactos = document.getElementById('lista-contactos');
 const msgContactos = document.getElementById('msg-contactos');
 
+const url = 'https://back-end-modulo-2-red-social.vercel.app/';
+
 let contactos = [];
 let usuarios = [];
 
 export const buscarUsuarios = async (username) => {
     try {
-        const response = await fetch('http://localhost:3000/usuarios/buscar',{
+        const response = await fetch(`${url}/usuarios/buscar`,{
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +23,7 @@ export const buscarUsuarios = async (username) => {
         
 
         let usernamelogueado = localStorage.getItem('username')
-        const responseContactos = await fetch(`http://localhost:3000/contactos/${usernamelogueado}`);
+        const responseContactos = await fetch(`${url}/contactos/${usernamelogueado}`);
         
         contactos = await responseContactos.json();
         
@@ -109,7 +111,7 @@ export function obtenerPublicacionesUsuarios() {
   const contenedor = document.getElementById("publicaciones-contacto");
   if (!contenedor) return;
 
-  fetch(`http://localhost:3000/publicaciones/todas`)
+  fetch(`${url}/publicaciones/todas`)
     .then((res) => res.json())
     .then((respuesta) => {
       const publicaciones = respuesta.data || [];

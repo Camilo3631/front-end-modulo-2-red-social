@@ -2,7 +2,9 @@ import { buscarUsuarios, mostrarUsuarios } from "./contactos.js";
 import { obtenerMensajes, enviarMensaje } from "./chat.js";
 import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
 
-const url = "http://localhost:3000";
+//const url = "http://localhost:3000";
+const url = 'https://back-end-modulo-2-red-social.vercel.app/';
+
 
 document
   .getElementById("btn-iniciar-sesion")
@@ -92,7 +94,7 @@ export function actualizarContadoresPerfil() {
 
   // Contador de Publicaciones
   // 
-  fetch(`http://localhost:3000/publicaciones/todas`)
+  fetch(`${url}/publicaciones/todas`)
     .then((res) => res.json())
     .then((respuesta) => {
       const publicaciones = respuesta.data || [];
@@ -105,7 +107,7 @@ export function actualizarContadoresPerfil() {
     .catch((err) => console.error("Error al contar publicaciones:", err));
 
   // 3. Contador de Seguidos / Contactos
-  fetch(`http://localhost:3000/contactos/${usuarioLogueado}`)
+  fetch(`${url}/contactos/${usuarioLogueado}`)
     .then((res) => res.json())
     .then((contactos) => {
       if(contSiguiendoElement) {

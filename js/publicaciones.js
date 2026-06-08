@@ -1,5 +1,7 @@
 const usuarioLogueado = localStorage.getItem("username");
 
+const url = "https://back-end-modulo-2-red-social.vercel.app/"
+
 // // Función que prepara el encabezado y el nombre del perfil
 // export function inicializarPerfil() {
 //   const usernameElement = document.getElementById("username");
@@ -26,7 +28,7 @@ export function publicar(event) {
     texto: texto,
   };
 
-  fetch("http://localhost:3000/publicaciones/crear-publicacion", {
+  fetch(`${url}/publicaciones/crear-publicacion`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +54,7 @@ export function obtenerTodasLasPublicaciones() {
   const contenedor = document.getElementById("lista-publicaciones");
   if (!contenedor) return;
 
-  fetch(`http://localhost:3000/publicaciones/todas`)
+  fetch(`${url}/publicaciones/todas`)
     .then((res) => res.json())
     .then((respuesta) => {
       const publicaciones = respuesta.data || [];
