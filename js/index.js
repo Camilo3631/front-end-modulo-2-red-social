@@ -1,8 +1,10 @@
-import { buscarUsuarios, mostrarUsuarios } from "./contactos.js";
+import { buscarUsuarios, mostrarUsuarios, obtenerPublicacionesUsuarios } from "./contactos.js";
 import { obtenerMensajes, enviarMensaje } from "./chat.js";
 import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
 
-const url = "http://localhost:3000";
+//const url = "http://localhost:3000";
+const url = 'https://back-end-modulo-2-red-social.vercel.app/';
+
 
 document
   .getElementById("btn-iniciar-sesion")
@@ -82,6 +84,43 @@ window.navContactos = function navContactos() {
 //Lista contactos
 
 
+// FUNCIÓN PARA ACTUALIZAR LOS CONTADORES DEL PERFIL
+export function actualizarContadoresPerfil() {
+  const usuarioLogueado = localStorage.getItem("username");
+  
+  
+  const contPostsElement = document.getElementById("contador-posts");
+  const contSiguiendoElement = document.getElementById("contador-siguiendo");
+  
+  if (!contPostsElement && !contSiguiendoElement) return;
+
+  // Contador de Publicaciones
+  // 
+  fetch(`${url}/publicaciones/todas`)
+    .then((res) => res.json())
+    .then((respuesta) => {
+      const publicaciones = respuesta.data || [];
+      const misPublicaciones = publicaciones.filter(post => post.username === usuarioLogueado);
+      
+      if(contPostsElement) {
+          contPostsElement.innerText = misPublicaciones.length;
+      }
+    })
+    .catch((err) => console.error("Error al contar publicaciones:", err));
+
+  // 3. Contador de Seguidos / Contactos
+  fetch(`${url}/contactos/${usuarioLogueado}`)
+    .then((res) => res.json())
+    .then((contactos) => {
+      if(contSiguiendoElement) {
+          contSiguiendoElement.innerText = contactos.length;
+      }
+    })
+    .catch((err) => console.error("Error al contar contactos:", err));
+}
+
+
+
 window.enviarMensaje = enviarMensaje;
 //Pantalla chat
 window.btnChat = function btnChat(usernameContacto) {
@@ -140,6 +179,7 @@ window.navPerfil = function navPerfil(){
     document.getElementById("username").innerText = usernamePerfil;
     
     obtenerTodasLasPublicaciones();
+    actualizarContadoresPerfil();
 
   })
   .catch((err) =>

@@ -1,10 +1,12 @@
+const url = "https://back-end-modulo-2-red-social.vercel.app/"
 function registrar() {
   const username = document.getElementById("reg-username").value;
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-contrasena").value;
 
 
-   fetch(`http://localhost:3000/usuarios/registrar`, {
+  
+   fetch(`${url}/usuarios/registrar`, {
 
     method: "POST",
     headers: {
@@ -34,3 +36,4 @@ function registrar() {
       }
     });
 }
+ 

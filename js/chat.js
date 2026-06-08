@@ -1,4 +1,4 @@
-const url = "http://localhost:3000";
+const url = "https://back-end-modulo-2-red-social.vercel.app/"
 
 export function obtenerMensajes(usernameContacto) {
   const userLog = localStorage.getItem("username");
