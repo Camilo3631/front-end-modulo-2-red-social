@@ -80,6 +80,43 @@ window.navContactos = function navContactos() {
 };
 
 
+// FUNCIÓN PARA ACTUALIZAR LOS CONTADORES DEL PERFIL
+export function actualizarContadoresPerfil() {
+  const usuarioLogueado = localStorage.getItem("username");
+  
+  
+  const contPostsElement = document.getElementById("contador-posts");
+  const contSiguiendoElement = document.getElementById("contador-siguiendo");
+  
+  if (!contPostsElement && !contSiguiendoElement) return;
+
+  // Contador de Publicaciones
+  // 
+  fetch(`http://localhost:3000/publicaciones/todas`)
+    .then((res) => res.json())
+    .then((respuesta) => {
+      const publicaciones = respuesta.data || [];
+      const misPublicaciones = publicaciones.filter(post => post.username === usuarioLogueado);
+      
+      if(contPostsElement) {
+          contPostsElement.innerText = misPublicaciones.length;
+      }
+    })
+    .catch((err) => console.error("Error al contar publicaciones:", err));
+
+  // 3. Contador de Seguidos / Contactos
+  fetch(`http://localhost:3000/contactos/${usuarioLogueado}`)
+    .then((res) => res.json())
+    .then((contactos) => {
+      if(contSiguiendoElement) {
+          contSiguiendoElement.innerText = contactos.length;
+      }
+    })
+    .catch((err) => console.error("Error al contar contactos:", err));
+}
+
+
+
 window.enviarMensaje = enviarMensaje;
 //Pantalla chat
 window.btnChat = function btnChat(usernameContacto) {
@@ -112,6 +149,7 @@ window.navPerfil = function navPerfil(){
     document.getElementById("contenido").innerHTML = html;
     document.getElementById("username").innerText = usernamePerfil;
     obtenerTodasLasPublicaciones();
+    actualizarContadoresPerfil();
 
   })
   .catch((err) =>

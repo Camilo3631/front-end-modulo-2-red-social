@@ -37,7 +37,8 @@ export function publicar(event) {
     .then((respuesta) => {
       if (respuesta.data) {
         input.value = "";
-        obtenerTodasLasPublicaciones(); // Recargamos para ver la nueva arriba
+        obtenerTodasLasPublicaciones();
+        actualizarContadoresPerfil(); // Recargamos para ver la nueva arriba y actualizacion del contador
       } else {
         alert("Error al crear la publicación");
       }
