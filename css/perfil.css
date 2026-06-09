@@ -1,3 +1,8 @@
+#perfil-info {
+  width: 50%;
+  margin: auto;
+}
+
 /* ── INFO USUARIO ── */
 .info-usuario {
   display: flex;
@@ -301,6 +306,7 @@ aside h2 {
   padding: 1.5rem;
   margin: 1rem 1.5rem 2.5rem 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin:auto;
 }
 
 #form-publicacion {
@@ -390,6 +396,6 @@ aside h2 {
 #lista-publicaciones{
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 90%;
   margin: 0 auto;
 }

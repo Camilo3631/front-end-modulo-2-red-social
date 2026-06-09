@@ -6,17 +6,33 @@ export function obtenerMensajes(usernameContacto) {
   fetch(`${url}chat/mostrar-mensajes/${userLog}/${usernameContacto}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-      enviarMensaje(usernameContacto);
+      const chat = document.getElementById("chat-mensajes");
+
+      let html = "";
+
       data.forEach((mensaje) => {
-        document.getElementById("chat-mensajes").innerHTML += `
+        const userClass =
+          userLog === mensaje.emisor ? "logged" : "contact";
+
+        html += `
+          <div class="${userClass}">
             <div class="burbuja-chat">
-                <p>${mensaje.emisor}</p>
-                <p>${mensaje.mensaje}</p>
-                <span>${mensaje.fecha}</span>
+              <p><strong>${mensaje.emisor}</strong></p>
+              <p>${mensaje.mensaje}</p>
+              <span>${mensaje.fecha}</span>
             </div>
-          `;
+          </div>
+        `;
       });
+
+      // Solo actualiza si realmente cambió
+      if (chat.innerHTML !== html) {
+        chat.innerHTML = html;
+      }
+
+      setTimeout(() => {
+        obtenerMensajes(usernameContacto);
+      }, 3000);
     });
 }
 

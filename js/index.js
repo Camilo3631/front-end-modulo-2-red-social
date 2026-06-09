@@ -81,6 +81,8 @@ window.navContactos = function navContactos() {
     });
 };
 
+//Lista contactos
+
 
 // FUNCIÓN PARA ACTUALIZAR LOS CONTADORES DEL PERFIL
 export function actualizarContadoresPerfil() {
@@ -125,8 +127,11 @@ window.btnChat = function btnChat(usernameContacto) {
   fetch("../html/chats.html")
   .then((res) => res.text())
   .then((html) => {
+    const usernamePerfil = localStorage.getItem("username");
     document.getElementById("contenido").innerHTML = html;
     document.getElementById("chat-username").innerText = usernameContacto;
+    document.getElementById("mi-username").innerText = usernamePerfil
+    listadoContactos()
     obtenerMensajes(usernameContacto);
     setInterval(obtenerMensajes, 30000)
     
@@ -142,6 +147,28 @@ window.btnChat = function btnChat(usernameContacto) {
 };
 
 
+window.listadoContactos = function listadoContactos(){
+  const usernameLogueado = localStorage.getItem("username");
+  fetch(`${url}/contactos/${usernameLogueado}`)
+        .then((res) => res.json())
+        .then((data) => {
+          data.forEach((contacto) => {
+            let contactoUsername =
+              contacto.username_contacto1 === usernameLogueado
+                ? contacto.username_contacto2
+                : contacto.username_contacto1;
+
+            document.getElementById("chat-lista-contactos").innerHTML += `
+              <div class="card-contactos" onclick="btnChat('${contactoUsername}')">
+                <p><strong>${contactoUsername}</strong></p>
+                <div class="btns-contacto">
+                  <button><i class="fa-solid fa-x" id="dejarSeguir"></i> Dejar de seguir</button>
+                </div>
+              </div>
+            `;
+          });
+        });
+}
 //Perfil
 window.navPerfil = function navPerfil(){
   fetch("../html/perfil.html")
@@ -150,6 +177,7 @@ window.navPerfil = function navPerfil(){
     const usernamePerfil = localStorage.getItem("username");
     document.getElementById("contenido").innerHTML = html;
     document.getElementById("username").innerText = usernamePerfil;
+    
     obtenerTodasLasPublicaciones();
     actualizarContadoresPerfil();
 

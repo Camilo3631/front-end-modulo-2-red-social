@@ -20,7 +20,7 @@
         <i class="fa-solid fa-user"></i>
       </div>
         <h3 id="chat-username">Nombre de usuario</h3>
-        <button class="btn-cerrar" onclick="cerrarChat()">✕</button>
+        <button class="btn-cerrar" onclick="navContactos()">✕</button>
       </div>
 
       <!-- Mensajes -->
@@ -46,15 +46,15 @@
         <div class="lateral-header">
           <h2>Contactos</h2>
         </div>
-        <ul id="lista-contactos">
+        <div id="chat-lista-contactos">
           <!-- Se cargan con JS -->
-        </ul>
+        </div>
       </div>
 
       <!-- Perfil propio -->
       <div class="lateral-perfil">
         <h2>Perfil</h2>
-        <div class="perfil-fila" onclick="abrirPerfil()">
+        <div class="perfil-fila" onclick="navPerfil()">
           <img src="" class="foto"/>
           <span id="mi-username">Nombre de usuario</span>
         </div>

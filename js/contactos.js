@@ -38,8 +38,6 @@ export const buscarUsuarios = async (username) => {
 export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
     const resultadosBusqueda = document.getElementById('resultados-busqueda');
     resultadosBusqueda.innerHTML = '';
-    console.log(usuariosParaMostrar)
-    console.log(contactos)
     
     usuariosParaMostrar.forEach(usuario => {
         const yaLoSigo = contactos.some(c => c.username_contacto1 === usuario.username || c.username_contacto2 === usuario.username );
@@ -47,7 +45,7 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
         const claseBoton = yaLoSigo ? 'btn-unfollow' : 'btn-follow';
 
             resultadosBusqueda.innerHTML += `
-          <div class='card-usuario'>
+          <div class='card-usuario-buscador'>
 
             <div class='info'>
               <p>@${usuario.username}</p>
