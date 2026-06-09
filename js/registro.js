@@ -6,7 +6,7 @@ function registrar() {
 
 
   
-   fetch(`${url}/usuarios/registrar`, {
+   fetch(`${url}usuarios/registrar`, {
 
     method: "POST",
     headers: {

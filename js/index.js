@@ -18,7 +18,7 @@ function iniciarSesion() {
   const email = document.getElementById("login-email").value;
   const password = document.getElementById("login-contrasena").value;
 
-  fetch(`${url}/usuarios/iniciar-sesion`, {
+  fetch(`${url}usuarios/iniciar-sesion`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +59,7 @@ window.navContactos = function navContactos() {
         });
 
       // Carga la lista de contactos una vez el HTML está en el DOM
-      fetch(`${url}/contactos/${usernameLogueado}`)
+      fetch(`${url}contactos/${usernameLogueado}`)
         .then((res) => res.json())
         .then((data) => {
           data.forEach((contacto) => {
@@ -94,7 +94,7 @@ export function actualizarContadoresPerfil() {
 
   // Contador de Publicaciones
   // 
-  fetch(`${url}/publicaciones/todas`)
+  fetch(`${url}publicaciones/todas`)
     .then((res) => res.json())
     .then((respuesta) => {
       const publicaciones = respuesta.data || [];
@@ -107,7 +107,7 @@ export function actualizarContadoresPerfil() {
     .catch((err) => console.error("Error al contar publicaciones:", err));
 
   // 3. Contador de Seguidos / Contactos
-  fetch(`${url}/contactos/${usuarioLogueado}`)
+  fetch(`${url}contactos/${usuarioLogueado}`)
     .then((res) => res.json())
     .then((contactos) => {
       if(contSiguiendoElement) {

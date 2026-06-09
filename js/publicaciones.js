@@ -28,7 +28,7 @@ export function publicar(event) {
     texto: texto,
   };
 
-  fetch(`${url}/publicaciones/crear-publicacion`, {
+  fetch(`${url}publicaciones/crear-publicacion`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export function obtenerTodasLasPublicaciones() {
   const contenedor = document.getElementById("lista-publicaciones");
   if (!contenedor) return;
 
-  fetch(`${url}/publicaciones/todas`)
+  fetch(`${url}publicaciones/todas`)
     .then((res) => res.json())
     .then((respuesta) => {
       const publicaciones = respuesta.data || [];
