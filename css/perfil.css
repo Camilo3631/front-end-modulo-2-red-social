@@ -68,6 +68,7 @@
 /* ── TABS ── */
 .tabs {
   display: flex;
+  
   border-bottom: 1px solid #ccc;
   padding: 0 1.5rem;
 }
@@ -85,7 +86,7 @@
 }
 
 .tab.active {
-  width: 50%;
+  width: 100%;
   border-bottom-color: #111;
   color: #111;
   font-weight: 600;
