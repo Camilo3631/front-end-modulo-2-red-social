@@ -51,7 +51,7 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
               <p>@${usuario.username}</p>
             </div>
 
-            <button class='${claseBoton} ${yaLoSigo})'>
+            <button onclick='${changeFollow()}' class='${claseBoton} ${yaLoSigo})'>
                 ${textoBoton}
             </button>
           </div>
@@ -74,6 +74,7 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
 };
 
 
+
 // export const ChangeFollow = async (idUsuario, yaLoSigo) => {
 //     try {
 //         if (yaLoSigo) {
@@ -92,6 +93,29 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
 //         alert('Error al actualizar seguimiento');
 //     }
 // };
+
+
+export function ChangeFollow(usuariosParaMostrar){
+  usuariosParaMostrar.forEach
+
+
+  try {
+        if (yaLoSigo) {
+            await fetch(`http://localhost:3000/contactos/${idUsuario}`, {
+                method: 'DELETE'
+            });
+        } else {
+            await fetch('http://localhost:3000/contactos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_usuario: idUsuario })
+            });
+        } 
+        cargarUsuarios(); 
+    } catch (error) {
+        alert('Error al actualizar seguimiento');
+    }
+}
 
 
 // export const iniciarChat = (username) => {
