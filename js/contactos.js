@@ -40,9 +40,12 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
     resultadosBusqueda.innerHTML = '';
     
     usuariosParaMostrar.forEach(usuario => {
-        const yaLoSigo = contactos.some(c => c.username_contacto1 === usuario.username || c.username_contacto2 === usuario.username );
+        const yaLoSigo = contactos.some(c => 
+          c.username_contacto1 === usuario.username ||
+          c.username_contacto2 === usuario.username );
         const textoBoton = yaLoSigo ? 'Unfollow' : 'Follow';
         const claseBoton = yaLoSigo ? 'btn-unfollow' : 'btn-follow';
+        const contactoId = yaLoSigo ? contacto._id : '';
 
             resultadosBusqueda.innerHTML += `
           <div class='card-usuario-buscador'>
@@ -51,7 +54,7 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
               <p>@${usuario.username}</p>
             </div>
 
-            <button onclick='${changeFollow()}' class='${claseBoton} ${yaLoSigo})'>
+            <button onclick="changeFollow('${usuario.username}', ${yaLoSigo}, '${contactoId}')" class='${claseBoton} ${yaLoSigo})'>
                 ${textoBoton}
             </button>
           </div>
@@ -74,41 +77,23 @@ export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
 };
 
 
+export function ChangeFollow(usernameObjetivo, yaLoSigo, contactoId){
 
-// export const ChangeFollow = async (idUsuario, yaLoSigo) => {
-//     try {
-//         if (yaLoSigo) {
-//             await fetch(`http://localhost:3000/contactos/${idUsuario}`, {
-//                 method: 'DELETE'
-//             });
-//         } else {
-//             await fetch('http://localhost:3000/contactos', {
-//                 method: 'POST',
-//                 headers: { 'Content-Type': 'application/json' },
-//                 body: JSON.stringify({ id_usuario: idUsuario })
-//             });
-//         } 
-//         cargarUsuarios(); 
-//     } catch (error) {
-//         alert('Error al actualizar seguimiento');
-//     }
-// };
-
-
-export function ChangeFollow(usuariosParaMostrar){
-  usuariosParaMostrar.forEach
-
+  let usernamelogueado = localStorage.getItem('username')
 
   try {
         if (yaLoSigo) {
-            await fetch(`http://localhost:3000/contactos/${idUsuario}`, {
+            await fetch(`${url}${contactoId}`, {
                 method: 'DELETE'
             });
         } else {
-            await fetch('http://localhost:3000/contactos', {
+            await fetch(``, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id_usuario: idUsuario })
+                body: JSON.stringify({ 
+                  username_contacto1: usernamelogueado,
+                  username_contacto2: usernameObjetivo
+                 })
             });
         } 
         cargarUsuarios(); 
