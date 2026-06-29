@@ -6,9 +6,7 @@ import { cerrarSesion } from "./perfil.js";
 
 import { url } from "./api.config.js";
 
-document
-  .getElementById("btn-iniciar-sesion")
-  .addEventListener("click", iniciarSesion);
+document.getElementById("btn-iniciar-sesion").addEventListener("click", iniciarSesion);
 
 function iniciarSesion() {
   const email = document.getElementById("login-email").value;
@@ -53,11 +51,7 @@ window.navContactos = function navContactos() {
             document.getElementById("input-buscar").value.toLowerCase()
           );
         });
-      // document.getElementById("link-perfil").addEventListener("click", () => {
-      //   navPerfil()
-      // })
 
-      // Carga la lista de contactos una vez el HTML está en el DOM
       fetch(`${url}contactos/${usernameLogueado}`)
         .then((res) => res.json())
         .then((data) => {
@@ -91,12 +85,6 @@ window.navPerfil = function navPerfil() {
 
       obtenerTodasLasPublicaciones();
       actualizarContadoresPerfil();
-
-
-      document.getElementById("btn-cerrar-sesion").addEventListener("click", () => {
-        cerrarSesion()
-      })
-
     })
     .catch((err) =>
       console.error("Error al cargar la pantalla de perfil:", err),
