@@ -3,8 +3,6 @@ import { url } from "./api.config.js";
 let contactos = [];
 let usuarios = [];
 
-
-
 export const buscarUsuarios = async (username) => {
   try {
     const response = await fetch(`${url}usuarios/buscar`, {
@@ -31,20 +29,22 @@ export const buscarUsuarios = async (username) => {
   }
 };
 
-
 const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
-  console.log(usuariosParaMostrar, contactos)
+  console.log(usuariosParaMostrar, contactos);
   const resultadosBusqueda = document.getElementById("resultados-busqueda");
   resultadosBusqueda.innerHTML = "";
 
   usuariosParaMostrar.forEach((usuario) => {
+
     const yaLoSigo = contactos.some(
       (c) =>
         c.username_contacto1 === usuario.username ||
         c.username_contacto2 === usuario.username,
     );
+    console.log(yaLoSigo)
     const textoBoton = yaLoSigo ? "Unfollow" : "Follow";
     const claseBoton = yaLoSigo ? "btn-unfollow" : "btn-follow";
+    const contactoId = yaLoSigo ? yaLoSigo._id : "";
     resultadosBusqueda.innerHTML += `
           <div class='card-usuario-buscador'>
 
@@ -57,27 +57,20 @@ const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
             </button>
           </div>
       `;
-
-  });
-
-  usuariosParaMostrar.forEach((usuario) => {
-    const yaLoSigo = contactos.some(
-      (c) =>
-        c.username_contacto1 === usuario.username ||
-        c.username_contacto2 === usuario.username,
-    );
-    const contactoId = yaLoSigo ? c._id : "";
     document
       .getElementById("changeFollow-" + usuario.username)
       .addEventListener("click", () => {
         changeFollow(usuario.username, yaLoSigo, contactoId);
       });
   });
+
+
 };
 
 export async function changeFollow(usernameObjetivo, yaLoSigo, contactoId) {
   let usernamelogueado = localStorage.getItem("username");
-
+  console.log(yaLoSigo)
+  console.log(contactoId)
   try {
     if (yaLoSigo) {
       await fetch(`${url}contactos/eliminar-contacto/${contactoId}`, {
