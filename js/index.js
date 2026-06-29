@@ -80,8 +80,6 @@ window.navContactos = function navContactos() {
     });
 };
 
-//Lista contactos
-
 
 // FUNCIÓN PARA ACTUALIZAR LOS CONTADORES DEL PERFIL
 export function actualizarContadoresPerfil() {
@@ -93,6 +91,7 @@ export function actualizarContadoresPerfil() {
   
   if (!contPostsElement && !contSiguiendoElement) return;
 
+  
   // Contador de Publicaciones
   // 
   fetch(`${url}publicaciones/todas`)
