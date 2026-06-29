@@ -1,7 +1,7 @@
 import { buscarUsuarios } from "./contactos.js";
 import { obtenerMensajes, enviarMensaje } from "./chat.js";
 import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
-import { actualizarContadoresPerfil } from "./perfil.js";
+import { actualizarContadoresPerfil, toggleSettings } from "./perfil.js";
 import { cerrarSesion } from "./perfil.js";
 
 import { url } from "./api.config.js";
@@ -85,11 +85,18 @@ window.navPerfil = function navPerfil() {
 
       obtenerTodasLasPublicaciones();
       actualizarContadoresPerfil();
+      fetch("./html/configuracion.html")
+        .then((res) => res.text())
+        .then((html) => {
+          document.getElementById("panel-config").innerHTML = html;
+        })
     })
     .catch((err) =>
       console.error("Error al cargar la pantalla de perfil:", err),
     );
 };
+
+window.toggleSettings = toggleSettings
 
 
 // //Para personalizar pantalla de perfil/contactos con datos del usuario

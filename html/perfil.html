@@ -1,59 +1,58 @@
 <div class="main">
-  <div class="contenido-pantalla">
-    <nav>
-      <div class="nav-links">
-        <a class="active">Perfil</a>
-        <a onclick="navContactos()">Contactos</a>
-      </div>
-      <div class="nav-icons">
-        <button id="btn-settings" title="Ajustes">⚙</button>
-      </div>
-    </nav>
-  </div>
-  <div id="perfil-info">
-    <!-- ── INFO USUARIO ── -->
-    <section class="info-usuario">
-      <div class="info-izquierda">
-        <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
-          <i class="fa-solid fa-user"></i>
+  <div>
+    <div class="contenido-pantalla">
+      <nav>
+        <div class="nav-links">
+          <a class="active">Perfil</a>
+          <a onclick="navContactos()">Contactos</a>
         </div>
-        <span class="username" id="username">username_</span>
-      </div>
-      <div class="info-contadores">
-        <div class="contador">
-          <span id="contador-posts" class="contador-num" id="num-publicaciones">0</span>
-          <span id="contador-siguiendo" class="contador-label">Publicaciones</span>
+        <div class="nav-icons">
+          <button id="btn-settings" onclick="toggleSettings(false)" title="Ajustes">⚙</button>
         </div>
-        <div class="contador">
-          <span class="contador-num" id="num-contactos">0</span>
-          <span class="contador-label">Contactos</span>
-        </div>
-      </div>
-    </section>
-    <section class="crear-publicacion">
-      <div id="form-publicacion">
-        <div class="publicacion-input-container">
-          <input type="text" id="texto-publicacion" placeholder="Crea una publicacion" required />
-          <button>Publicar</button>
-        </div>
-      </div>
-    </section>
-    <div id="tabs">
-      <button id="btn-publicaciones" class="tab active">Publicaciones</button>
+      </nav>
     </div>
+    <div id="perfil-info">
+      <!-- ── INFO USUARIO ── -->
+      <section class="info-usuario">
+        <div class="info-izquierda">
+          <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <span class="username" id="username">username_</span>
+        </div>
+        <div class="info-contadores">
+          <div class="contador">
+            <span id="contador-posts" class="contador-num" id="num-publicaciones">0</span>
+            <span id="contador-siguiendo" class="contador-label">Publicaciones</span>
+          </div>
+          <div class="contador">
+            <span class="contador-num" id="num-contactos">0</span>
+            <span class="contador-label">Contactos</span>
+          </div>
+        </div>
+      </section>
+      <section class="crear-publicacion">
+        <div id="form-publicacion">
+          <div class="publicacion-input-container">
+            <input type="text" id="texto-publicacion" placeholder="Crea una publicacion" required />
+            <button>Publicar</button>
+          </div>
+        </div>
+      </section>
+      <div id="tabs">
+        <button id="btn-publicaciones" class="tab active">Publicaciones</button>
+      </div>
 
-    <section id="seccion-publicaciones">
-      <div id="lista-publicaciones"></div>
-    </section>
-    <section id="seccion-megusta" style="display:none;">
-      <p>Aún no hay me gusta.</p>
-    </section>
+      <section id="seccion-publicaciones">
+        <div id="lista-publicaciones"></div>
+      </section>
+      <section id="seccion-megusta" style="display:none;">
+        <p>Aún no hay me gusta.</p>
+      </section>
+    </div>
   </div>
 
-  <button id="btn-cerrar-panel">✕</button>
-</div>
-
-<section>
-  <aside id="panel-config"></aside>
-</section>
+  <section>
+    <aside id="panel-config" class="reducido"></aside>
+  </section>
 </div>

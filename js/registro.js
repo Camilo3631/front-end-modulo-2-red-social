@@ -5,7 +5,6 @@ document.getElementById("btn-registro").addEventListener("click", () => {
 });
 
 function registrar() {
-  console.log("hola")
   const username = document.getElementById("reg-username").value;
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-contrasena").value;
