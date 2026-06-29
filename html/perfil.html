@@ -1,126 +1,117 @@
+<div class="main">
+  <div class="contenido-pantalla">
+    <nav>
+      <div class="nav-links">
+        <a class="active">Perfil</a>
+        <a onclick="navContactos()">Contactos</a>
+      </div>
+    </nav>
 
-
-
-<div>
-  <main id="contenido">
-
-  <!-- ── NAVBAR ── -->
-  <nav>
-    <div class="nav-links">
-      <a class="active">Perfil</a>
-      <a onclick="navContactos()">Contactos</a>
-    </div>
     <div class="nav-icons">
       <button onclick="toggleConfig()" title="Ajustes">⚙</button>
     </div>
-  </nav>
-  
-  <div id="perfil-info">
-  <!-- ── INFO USUARIO ── -->
-  <section class="info-usuario">
-    <div class="info-izquierda">
-      <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <span class="username" id="username">username_</span>
-    </div>
-    <div class="info-contadores">
-      <div class="contador">
-        <span id="contador-posts" class="contador-num" id="num-publicaciones">0</span>
-        <span id="contador-siguiendo" class="contador-label">Publicaciones</span>
-      </div>
-      <div class="contador">
-        <span class="contador-num" id="num-contactos">0</span>
-        <span class="contador-label">Contactos</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CREAR PUBLICACION ── -->
-
-  <section class="crear-publicacion">
-    <form id="form-publicacion" onsubmit="publicar(event)">
-      <div class="publicacion-input-container">
-        <input 
-          type="text" 
-          id="texto-publicacion" 
-          placeholder="Crea una publicacion" 
-          required 
-        />
-        <button type="submit">Publicar</button>
-      </div>
-    </form>
-  </section>
-
-  
-
-  <!-- ── TABS ── -->
-  <div class="tabs">
-    <button class="tab active" onclick="cambiarTab('publicaciones', this)">Publicaciones</button>
-    <!---<button class="tab" onclick="cambiarTab('megusta', this)">Me gusta</button> -->
   </div>
 
-  <!-- ── PUBLICACIONES ── -->
-  <section id="seccion-publicaciones">
-    <div id="lista-publicaciones">
-      <!-- Las publicaciones se cargan aquí con JS -->
-    </div>
-  </section>
 
-  <!-- ── ME GUSTA (oculto por defecto) ── -->
-  <section id="seccion-megusta" style="display:none;">
-    <p>Aún no hay me gusta.</p>
-  </section>
+
+  <div id="perfil-info">
+    <!-- ── INFO USUARIO ── -->
+    <section class="info-usuario">
+      <div class="info-izquierda">
+        <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <span class="username" id="username">username_</span>
+      </div>
+      <div class="info-contadores">
+        <div class="contador">
+          <span id="contador-posts" class="contador-num" id="num-publicaciones">0</span>
+          <span id="contador-siguiendo" class="contador-label">Publicaciones</span>
+        </div>
+        <div class="contador">
+          <span class="contador-num" id="num-contactos">0</span>
+          <span class="contador-label">Contactos</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CREAR PUBLICACION ── -->
+
+    <section class="crear-publicacion">
+      <form id="form-publicacion" onsubmit="publicar(event)">
+        <div class="publicacion-input-container">
+          <input type="text" id="texto-publicacion" placeholder="Crea una publicacion" required />
+          <button type="submit">Publicar</button>
+        </div>
+      </form>
+    </section>
+
+
+
+    <!-- ── TABS ── -->
+    <div class="tabs">
+      <button class="tab active" onclick="cambiarTab('publicaciones', this)">Publicaciones</button>
+      <!---<button class="tab" onclick="cambiarTab('megusta', this)">Me gusta</button> -->
+    </div>
+
+    <!-- ── PUBLICACIONES ── -->
+    <section id="seccion-publicaciones">
+      <div id="lista-publicaciones">
+        <!-- Las publicaciones se cargan aquí con JS -->
+      </div>
+    </section>
+
+    <!-- ── ME GUSTA (oculto por defecto) ── -->
+    <section id="seccion-megusta" style="display:none;">
+      <p>Aún no hay me gusta.</p>
+    </section>
   </div>
 
   <section>
-     <!-- ── PANEL CONFIGURACIÓN ── -->
-      <aside class="panel-config" id="panel-config">
-   <button class="btn-cerrar-panel" onclick="toggleConfig()">✕</button>
-    </div>
-        <h2>Avatar</h2>
-        <div class="avatar-opciones">
-          <div alt="Avatar 1" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <div alt="Avatar 2" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-        <i class="fa-solid fa-user"></i>
-      </div>
-      <div alt="Avatar 3" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-        <i class="fa-solid fa-user"></i> 
-      </div>
-      <div alt="Avatar 4" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-        <i class="fa-solid fa-user"></i>
-      </div>
-        </div>
-   
-        <h2>Cambiar username</h2>
-        <div class="config-fila">
-          <input type="text" id="nuevo-username" placeholder="Nuevo username" />
-          <button onclick="cambiarUsername()">Enviar</button>
-        </div>
-        <p class="msg" id="msg-username"></p>
-   
-        <h2>Cambiar contraseña</h2>
-        <div class="config-fila">
-          <input type="password" id="nueva-contrasena" placeholder="Nueva contraseña" />
-          <button onclick="cambiarContrasena()">Enviar</button>
-        </div>
-        <p class="msg" id="msg-contrasena"></p>
-   
-        <div class="config-botones">
-          <button class="btn-cerrar-sesion" onclick="cerrarSesion()">Cerrar sesión</button>
-          <button class="btn-eliminar-cuenta" onclick="eliminarCuenta()">Eliminar cuenta</button>
-        </div>
-   
-      </aside>
-   
-    </div>
+    <!-- ── PANEL CONFIGURACIÓN ── -->
+    <aside class="panel-config" id="panel-config">
+      <button class="btn-cerrar-panel" onclick="toggleConfig()">✕</button>
+</div>
+<h2>Avatar</h2>
+<div class="avatar-opciones">
+  <div alt="Avatar 1" class="avatar-opcion" onclick="seleccionarAvatar(this)">
+    <i class="fa-solid fa-user"></i>
+  </div>
+  <div alt="Avatar 2" class="avatar-opcion" onclick="seleccionarAvatar(this)">
+    <i class="fa-solid fa-user"></i>
+  </div>
+  <div alt="Avatar 3" class="avatar-opcion" onclick="seleccionarAvatar(this)">
+    <i class="fa-solid fa-user"></i>
+  </div>
+  <div alt="Avatar 4" class="avatar-opcion" onclick="seleccionarAvatar(this)">
+    <i class="fa-solid fa-user"></i>
+  </div>
+</div>
 
-</main>
+<h2>Cambiar username</h2>
+<div class="config-fila">
+  <input type="text" id="nuevo-username" placeholder="Nuevo username" />
+  <button onclick="cambiarUsername()">Enviar</button>
+</div>
+<p class="msg" id="msg-username"></p>
+
+<h2>Cambiar contraseña</h2>
+<div class="config-fila">
+  <input type="password" id="nueva-contrasena" placeholder="Nueva contraseña" />
+  <button onclick="cambiarContrasena()">Enviar</button>
+</div>
+<p class="msg" id="msg-contrasena"></p>
+
+<div class="config-botones">
+  <button id="btn-cerrar-sesion">Cerrar sesión</button>
+  <button class="btn-eliminar-cuenta" onclick="eliminarCuenta()">Eliminar cuenta</button>
+</div>
+
+</aside>
+
+</div>
 
 </section>
-
-<script src="../js/navigation.js"></script>
-<script src="../js/index.js"></script>
+<script type="module" src="./js/navigation.js"></script>
+<script type="module" src="./js/perfil.js"></script>
 </div>

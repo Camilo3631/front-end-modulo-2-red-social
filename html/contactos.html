@@ -1,44 +1,27 @@
-
-<div>
-  <main class="contenido-pantalla" id="contenido">
-    <!-- ── NAVBAR ── -->
+<div class="main">
+  <div class="contenido-pantalla">
     <nav>
       <div class="nav-links">
-        <a onclick="navPerfil()">Perfil</a>
+        <a onclick="navPerfil()" id="link-perfil">Perfil</a>
         <a class="active">Contactos</a>
       </div>
     </nav>
-
-    <!-- ── CONTENIDO: dos columnas ── -->
     <div class="layout-contactos">
-
-      <!-- ── COLUMNA IZQUIERDA: lista de contactos ── -->
       <div id="columna-contactos">
-        <div id="lista-contactos">
-          
-        </div>
+        <div id="lista-contactos"></div>
         <p id="msg-contactos"></p>
       </div>
-
-      <!-- ── COLUMNA DERECHA: buscador + publicaciones ── -->
       <div class="columna-principal">
-
-        <!-- Buscador -->
         <div class="buscador">
           <input type="text" id="input-buscar" placeholder="@username_" />
           <button id="btn-buscarUsuarios">Buscar</button>
         </div>
-
-        <!-- Resultados del buscador -->
         <div id="resultados-busqueda"></div>
-
-        <!-- Publicaciones del contacto seleccionado -->
         <div id="publicaciones-contacto"></div>
-
       </div>
-
     </div>
-  </main>
+  </div>
+  <script src="../js/contactos.js"></script>
   <script src="../js/navigation.js"></script>
-</div>
 
+</div>

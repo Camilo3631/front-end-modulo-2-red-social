@@ -2,8 +2,11 @@ import { url } from "./api.config.js";
 
 let contactos = [];
 let usuarios = [];
+let loggedUsername = ""
+
 
 export const buscarUsuarios = async (username) => {
+  loggedUsername = username
   try {
     const response = await fetch(`${url}usuarios/buscar`, {
       method: "POST",
@@ -30,21 +33,18 @@ export const buscarUsuarios = async (username) => {
 };
 
 const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
-  console.log(usuariosParaMostrar, contactos);
   const resultadosBusqueda = document.getElementById("resultados-busqueda");
   resultadosBusqueda.innerHTML = "";
 
   usuariosParaMostrar.forEach((usuario) => {
 
-    const yaLoSigo = contactos.some(
+    const yaLoSigo = contactos.find(
       (c) =>
         c.username_contacto1 === usuario.username ||
-        c.username_contacto2 === usuario.username,
+        c.username_contacto2 === usuario.username
     );
-    console.log(yaLoSigo)
     const textoBoton = yaLoSigo ? "Unfollow" : "Follow";
     const claseBoton = yaLoSigo ? "btn-unfollow" : "btn-follow";
-    const contactoId = yaLoSigo ? yaLoSigo._id : "";
     resultadosBusqueda.innerHTML += `
           <div class='card-usuario-buscador'>
 
@@ -57,25 +57,34 @@ const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
             </button>
           </div>
       `;
-    document
-      .getElementById("changeFollow-" + usuario.username)
-      .addEventListener("click", () => {
-        changeFollow(usuario.username, yaLoSigo, contactoId);
-      });
   });
 
+  usuariosParaMostrar.forEach((usuario) => {
+    const yaLoSigo = contactos.find(
+      (c) =>
+        c.username_contacto1 === usuario.username ||
+        c.username_contacto2 === usuario.username
+    );
+    document.getElementById("changeFollow-" + usuario.username)
+      .addEventListener("click", () => {
+        console.log(yaLoSigo)
+        changeFollow(usuario.username, yaLoSigo);
+      });
+
+  });
 
 };
 
-export async function changeFollow(usernameObjetivo, yaLoSigo, contactoId) {
+export async function changeFollow(usernameObjetivo, yaLoSigo) {
   let usernamelogueado = localStorage.getItem("username");
-  console.log(yaLoSigo)
-  console.log(contactoId)
   try {
     if (yaLoSigo) {
-      await fetch(`${url}contactos/eliminar-contacto/${contactoId}`, {
+      await fetch(`${url}contactos/eliminar-contacto/${yaLoSigo._id}`, {
         method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({})
       });
+      buscarUsuarios(loggedUsername)
     } else {
       await fetch(`${url}contactos/agregar-contacto`, {
         method: "POST",
@@ -85,47 +94,9 @@ export async function changeFollow(usernameObjetivo, yaLoSigo, contactoId) {
           username_contacto2: usernameObjetivo,
         }),
       });
+      buscarUsuarios(loggedUsername)
     }
   } catch (error) {
     alert("Error al actualizar seguimiento");
   }
-}
-
-// FUNCIÓN PARA MOSTRAR LAS PUBLICACIONES
-export function obtenerPublicacionesUsuarios() {
-  const contenedor = document.getElementById("publicaciones-contacto");
-  if (!contenedor) return;
-
-  fetch(`${url}publicaciones/todas`)
-    .then((res) => res.json())
-    .then((respuesta) => {
-      const publicaciones = respuesta.data || [];
-      contenedor.innerHTML = "";
-
-      if (publicaciones.length === 0) {
-        contenedor.innerHTML = `<p style="text-align:center; color:gray; margin-top:20px;">Aún no hay publicaciones.</p>`;
-        return;
-      }
-
-      publicaciones.reverse().forEach((post) => {
-        const divCard = document.createElement("div");
-        divCard.classList.add("publicacion-card");
-
-        divCard.innerHTML = `
-            <div class="publicacion-header">
-                <div class="usuario-info">
-                    <div class="avatar-mini">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <span class="pub-username">${post.username}</span>
-                </div>
-            </div>
-            <div class="publicacion-contenido">
-                <p>${post.texto}</p>
-            </div>
-        `;
-        contenedor.appendChild(divCard);
-      });
-    })
-    .catch((err) => console.error("Error en el GET de publicaciones:", err));
 }
