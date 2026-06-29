@@ -1,4 +1,4 @@
-import { buscarUsuarios, mostrarUsuarios, obtenerPublicacionesUsuarios } from "./contactos.js";
+import { buscarUsuarios } from "./contactos.js";
 import { obtenerMensajes, enviarMensaje } from "./chat.js";
 import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
 
@@ -45,7 +45,7 @@ function iniciarSesion() {
 window.navContactos = function navContactos() {
   const usernameLogueado = localStorage.getItem("username");
 
-  fetch("../html/contactos.html")
+  fetch("./html/contactos.html")
     .then((res) => res.text())
     .then((html) => {
       document.getElementById("contenido").innerHTML = html;

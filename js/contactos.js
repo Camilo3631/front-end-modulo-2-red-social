@@ -1,116 +1,102 @@
-
-const listaContactos = document.getElementById('lista-contactos');
-const msgContactos = document.getElementById('msg-contactos');
 import { url } from "./api.config.js";
 
 let contactos = [];
 let usuarios = [];
 
+
+
 export const buscarUsuarios = async (username) => {
-    try {
-        const response = await fetch(`${url}usuarios/buscar`,{
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username
-    }),
+  try {
+    const response = await fetch(`${url}usuarios/buscar`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    usuarios = await response.json();
 
-        });
-        usuarios = await response.json();
-        
+    let usernamelogueado = localStorage.getItem("username");
+    const responseContactos = await fetch(
+      `${url}contactos/${usernamelogueado}`,
+    );
 
-        let usernamelogueado = localStorage.getItem('username')
-        const responseContactos = await fetch(`${url}contactos/${usernamelogueado}`);
-        
-        contactos = await responseContactos.json();
-        
-        mostrarUsuarios(usuarios.data, contactos);
-        
-    } catch (error) {
-        alert('Error al cargar usuarios y contactos');
-    }
+    contactos = await responseContactos.json();
+
+    mostrarUsuarios(usuarios.data, contactos);
+  } catch (error) {
+    alert("Error al cargar usuarios y contactos");
+  }
 };
 
 
-export const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
-    const resultadosBusqueda = document.getElementById('resultados-busqueda');
-    resultadosBusqueda.innerHTML = '';
-    
-    usuariosParaMostrar.forEach(usuario => {
-        const yaLoSigo = contactos.some(c => 
-          c.username_contacto1 === usuario.username ||
-          c.username_contacto2 === usuario.username );
-        const textoBoton = yaLoSigo ? 'Unfollow' : 'Follow';
-        const claseBoton = yaLoSigo ? 'btn-unfollow' : 'btn-follow';
-        const contactoId = yaLoSigo ? contacto._id : '';
+const mostrarUsuarios = (usuariosParaMostrar, contactos) => {
+  console.log(usuariosParaMostrar, contactos)
+  const resultadosBusqueda = document.getElementById("resultados-busqueda");
+  resultadosBusqueda.innerHTML = "";
 
-            resultadosBusqueda.innerHTML += `
+  usuariosParaMostrar.forEach((usuario) => {
+    const yaLoSigo = contactos.some(
+      (c) =>
+        c.username_contacto1 === usuario.username ||
+        c.username_contacto2 === usuario.username,
+    );
+    const textoBoton = yaLoSigo ? "Unfollow" : "Follow";
+    const claseBoton = yaLoSigo ? "btn-unfollow" : "btn-follow";
+    resultadosBusqueda.innerHTML += `
           <div class='card-usuario-buscador'>
 
             <div class='info'>
               <p>@${usuario.username}</p>
             </div>
 
-            <button onclick="changeFollow('${usuario.username}', ${yaLoSigo}, '${contactoId}')" class='${claseBoton} ${yaLoSigo})'>
+            <button id=${"changeFollow-" + usuario.username} class='${claseBoton} ${yaLoSigo})'>
                 ${textoBoton}
             </button>
           </div>
       `;
 
-    //     resultadosBusqueda.innerHTML += `
-    //       <div class='card-usuario'>
-    //         <img src='${usuario.foto || 'https://picsum.photos'}' class='foto-perfil' alt='Perfil'>
+  });
 
-    //         <div class='info'>
-    //           <p>@${usuario.username}</p>
-    //         </div>
-
-    //         <button class='${claseBoton}' onclick='ChangeFollow(${usuario.id}, ${yaLoSigo})'>
-    //             ${textoBoton}
-    //         </button>
-    //       </div>
-    //   `;
-    });
+  usuariosParaMostrar.forEach((usuario) => {
+    const yaLoSigo = contactos.some(
+      (c) =>
+        c.username_contacto1 === usuario.username ||
+        c.username_contacto2 === usuario.username,
+    );
+    const contactoId = yaLoSigo ? c._id : "";
+    document
+      .getElementById("changeFollow-" + usuario.username)
+      .addEventListener("click", () => {
+        changeFollow(usuario.username, yaLoSigo, contactoId);
+      });
+  });
 };
 
-
-export function ChangeFollow(usernameObjetivo, yaLoSigo, contactoId){
-
-  let usernamelogueado = localStorage.getItem('username')
+export async function changeFollow(usernameObjetivo, yaLoSigo, contactoId) {
+  let usernamelogueado = localStorage.getItem("username");
 
   try {
-        if (yaLoSigo) {
-            await fetch(`${url}${contactoId}`, {
-                method: 'DELETE'
-            });
-        } else {
-            await fetch(``, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                  username_contacto1: usernamelogueado,
-                  username_contacto2: usernameObjetivo
-                 })
-            });
-        } 
-        cargarUsuarios(); 
-    } catch (error) {
-        alert('Error al actualizar seguimiento');
+    if (yaLoSigo) {
+      await fetch(`${url}contactos/eliminar-contacto/${contactoId}`, {
+        method: "DELETE",
+      });
+    } else {
+      await fetch(`${url}contactos/agregar-contacto`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username_contacto1: usernamelogueado,
+          username_contacto2: usernameObjetivo,
+        }),
+      });
     }
+  } catch (error) {
+    alert("Error al actualizar seguimiento");
+  }
 }
-
-
-// export const iniciarChat = (username) => {
-//     alert(`Iniciando chat con @${username}`);
-// };
-
-// export const navPerfil = () => {
-//     window.location.href = './perfil.html';
-// };
-
-
 
 // FUNCIÓN PARA MOSTRAR LAS PUBLICACIONES
 export function obtenerPublicacionesUsuarios() {
