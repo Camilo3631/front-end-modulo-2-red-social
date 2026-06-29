@@ -1,13 +1,16 @@
-const url = "https://back-end-modulo-2-red-social.vercel.app/"
+import { url } from "./api.config.js";
+
+document.getElementById("btn-registro").addEventListener("click", () => {
+  registrar()
+});
+
 function registrar() {
+  console.log("hola")
   const username = document.getElementById("reg-username").value;
   const email = document.getElementById("reg-email").value;
   const password = document.getElementById("reg-contrasena").value;
 
-
-  
-   fetch(`${url}usuarios/registrar`, {
-
+  fetch(`${url}usuarios/registrar`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -22,10 +25,9 @@ function registrar() {
     .then((data) => {
       console.log(data);
 
-      document.getElementById("reg-username").value = ""
-      document.getElementById("reg-email").value = ""
-      document.getElementById("reg-contrasena").value = ""
-
+      document.getElementById("reg-username").value = "";
+      document.getElementById("reg-email").value = "";
+      document.getElementById("reg-contrasena").value = "";
 
       if (data.insertedId) {
         document.getElementById("register-message").innerText =
@@ -36,4 +38,3 @@ function registrar() {
       }
     });
 }
- 

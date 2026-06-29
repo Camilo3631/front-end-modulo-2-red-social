@@ -1,8 +1,7 @@
 
 const listaContactos = document.getElementById('lista-contactos');
 const msgContactos = document.getElementById('msg-contactos');
-
-const url = 'https://back-end-modulo-2-red-social.vercel.app/';
+import { url } from "./api.config.js";
 
 let contactos = [];
 let usuarios = [];

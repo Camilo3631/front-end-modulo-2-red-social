@@ -2,8 +2,7 @@ import { buscarUsuarios, mostrarUsuarios, obtenerPublicacionesUsuarios } from ".
 import { obtenerMensajes, enviarMensaje } from "./chat.js";
 import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
 
-//const url = "http://localhost:3000";
-const url = 'https://back-end-modulo-2-red-social.vercel.app/';
+import { url } from "./api.config.js";
 
 
 document

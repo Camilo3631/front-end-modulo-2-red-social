@@ -1,6 +1,6 @@
 const usuarioLogueado = localStorage.getItem("username");
 
-const url = "https://back-end-modulo-2-red-social.vercel.app/"
+import { url } from "./api.config.js";
 
 // // Función que prepara el encabezado y el nombre del perfil
 // export function inicializarPerfil() {

@@ -1,4 +1,5 @@
-const url = "https://back-end-modulo-2-red-social.vercel.app/"
+import { url } from "./api.config.js";
+
 
 export function obtenerMensajes(usernameContacto) {
   const userLog = localStorage.getItem("username");
