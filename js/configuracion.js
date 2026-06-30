@@ -1,6 +1,8 @@
 import { getHtml } from "./services/html.service.js";
+import { doGet, doPost, doDelete } from "./services/api.service.js";
 
 function cambiarUsername() {
+
   console.log("cambiar username");
 }
 
@@ -12,8 +14,12 @@ function seleccionarAvatar(avatar) {
   console.log("avatar", avatar);
 }
 
-function eliminarCuenta() {
+async function eliminarCuenta() {
   console.log("eliminar cuenta");
+  let email = localStorage.getItem("email")
+  console.log(email)
+  const res = await doDelete(`usuarios/eliminar-cuenta/hugo`, {})
+  console.log(res)
 }
 
 function cerrarSesion() {
