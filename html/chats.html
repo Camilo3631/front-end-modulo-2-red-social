@@ -1,63 +1,43 @@
-
-<div>
-<main id="chat-contenido">
-
-  <div class="layout">
-
-    <!-- ── COLUMNA IZQUIERDA: chat ── -->
-    <div class="columna-chat">
-
-      <!-- Header del chat -->
-      <div class="chat-header">
-        <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
-        <i class="fa-solid fa-user"></i>
+<div class="main">
+  <div class="contenido-pantalla">
+    <nav>
+      <div class="nav-links">
+        <a onclick="navPerfil()" id="link-perfil">Perfil</a>
+        <a class="active">Contactos</a>
       </div>
-        <h3 id="chat-username">Nombre de usuario</h3>
-        <button class="btn-cerrar" onclick="navContactos()">✕</button>
-      </div>
-
-      <!-- Mensajes -->
-      <div class="chat-mensajes" id="chat-mensajes">
-        <!-- Se cargan con JS -->
-      </div>
-
-      <!-- Barra de escribir -->
-      <div class="chat-input">
-        <input type="text" id="input-mensaje" placeholder="Escribe tu mensaje..." />
-        <div id= "enviarMensaje">
-          <!-- Icono enviar -->
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ── COLUMNA DERECHA ── -->
-    <div class="columna-lateral">
-
-      <!-- Lista de contactos -->
-      <div class="lateral-contactos">
-        <div class="lateral-header">
-          <h2>Contactos</h2>
-        </div>
-        <div id="chat-lista-contactos">
-          <!-- Se cargan con JS -->
-        </div>
-      </div>
-
-      <!-- Perfil propio -->
-      <div class="lateral-perfil">
-        <h2>Perfil</h2>
-        <div class="perfil-fila" onclick="navPerfil()">
-          <img src="" class="foto"/>
-          <span id="mi-username">Nombre de usuario</span>
-        </div>
-      </div>
-
-    </div>
-
+    </nav>
   </div>
-</main>
-
-  <script src="../js/navigation.js"></script>
-
+  <div id="chat-contenido">
+    <div class="layout">
+      <div class="columna-chat">
+        <div class="chat-header">
+          <div alt="Foto de perfil" class="foto-perfil" id="foto-perfil">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3 id="chat-username">Nombre de usuario</h3>
+          <button class="btn-cerrar" onclick="navContactos()">✕</button>
+        </div>
+        <div class="chat-mensajes" id="chat-mensajes"></div>
+        <div class="chat-input">
+          <input type="text" id="input-mensaje" placeholder="Escribe tu mensaje..." />
+          <button id="btn-enviarMensaje">send</button>
+        </div>
+      </div>
+      <div class="columna-lateral">
+        <div class="lateral-contactos">
+          <div class="lateral-header">
+            <h2>Contactos</h2>
+          </div>
+          <div id="chat-lista-contactos"></div>
+        </div>
+        <div class="lateral-perfil">
+          <h2>Perfil</h2>
+          <div class="perfil-fila" onclick="navPerfil()">
+            <img src="" class="foto" />
+            <span id="mi-username">Nombre de usuario</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

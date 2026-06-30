@@ -1,105 +1,33 @@
-import { buscarUsuarios } from "./contactos.js";
-import { obtenerMensajes, enviarMensaje } from "./chat.js";
-import { publicar, obtenerTodasLasPublicaciones } from "./publicaciones.js";
-import { actualizarContadoresPerfil, toggleSettings } from "./perfil.js";
-import { cerrarSesion } from "./perfil.js";
+import { buscarUsuarios, navContactos } from "./contactos.js";
+import { btnChat } from "./chat.js";
+import { publicar } from "./publicaciones.js";
+import { navPerfil, toggleSettings } from "./perfil.js";
+import { doPost } from "./services/api.service.js";
+import { getHtml } from "./services/html.service.js";
 
-import { url } from "./api.config.js";
+getHtml("btn-iniciar-sesion").addEventListener("click", iniciarSesion);
 
-document.getElementById("btn-iniciar-sesion").addEventListener("click", iniciarSesion);
+async function iniciarSesion() {
+  const email = getHtml("login-email").value;
+  const password = getHtml("login-contrasena").value;
 
-function iniciarSesion() {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-contrasena").value;
+  const res = await doPost(`usuarios/iniciar-sesion`, { email, contrasena: password })
 
-  fetch(`${url}usuarios/iniciar-sesion`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: email,
-      contrasena: password,
-    }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-
-      if (data.estado) {
-        guardarUsuario(data);
-        navContactos()
-      } else {
-        document.getElementById("error-inicio-sesion").innerText =
-          "Credenciales incorrectas";
-      }
-    });
+  if (res.estado) {
+    guardarUsuario(res);
+    navContactos()
+  } else {
+    getHtml("error-inicio-sesion").innerText = "Credenciales incorrectas";
+  }
 }
 
-// // Función principal y reutilizable para navegar a contactos
-window.navContactos = function navContactos() {
-  const usernameLogueado = localStorage.getItem("username");
-
-  fetch("./html/contactos.html")
-    .then((res) => res.text())
-    .then((html) => {
-      document.getElementById("contenido").innerHTML = html;
-
-      document.getElementById("btn-buscarUsuarios")
-        .addEventListener("click", () => {
-          buscarUsuarios(
-            document.getElementById("input-buscar").value.toLowerCase()
-          );
-        });
-
-      fetch(`${url}contactos/${usernameLogueado}`)
-        .then((res) => res.json())
-        .then((data) => {
-          data.forEach((contacto) => {
-            let contactoUsername =
-              contacto.username_contacto1 === usernameLogueado
-                ? contacto.username_contacto2
-                : contacto.username_contacto1;
-
-            document.getElementById("lista-contactos").innerHTML += `
-              <div class="card-contactos" onclick="btnChat('${contactoUsername}')">
-                <p><strong>${contactoUsername}</strong></p>
-                <div class="btns-contacto">
-                  <button><i class="fa-solid fa-x" id="dejarSeguir"></i> Dejar de seguir</button>
-                </div>
-              </div>
-            `;
-          });
-        });
-    });
-};
-
-
-window.navPerfil = function navPerfil() {
-  fetch("./html/perfil.html")
-    .then((res) => res.text())
-    .then((html) => {
-      const usernamePerfil = localStorage.getItem("username");
-      document.getElementById("contenido").innerHTML = html;
-      document.getElementById("username").innerText = usernamePerfil;
-
-      obtenerTodasLasPublicaciones();
-      actualizarContadoresPerfil();
-      fetch("./html/configuracion.html")
-        .then((res) => res.text())
-        .then((html) => {
-          document.getElementById("panel-config").innerHTML = html;
-        })
-    })
-    .catch((err) =>
-      console.error("Error al cargar la pantalla de perfil:", err),
-    );
-};
-
+window.navContactos = navContactos
+window.navPerfil = navPerfil
 window.toggleSettings = toggleSettings
+window.publicar = publicar
+window.btnChat = btnChat
 
 
-// //Para personalizar pantalla de perfil/contactos con datos del usuario
 function guardarUsuario(data) {
   localStorage.setItem("id", data.usuarioVerificado._id);
   localStorage.setItem("email", data.usuarioVerificado.email);

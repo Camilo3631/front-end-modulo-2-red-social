@@ -1,12 +1,13 @@
 import { url } from "./api.config.js";
+import { actualizarContadoresPerfil } from "./perfil.js";
+import { getHtml } from "./services/html.service.js";
 
 const usuarioLogueado = localStorage.getItem("username");
 
 
 // FUNCIÓN PARA CREAR UNA PUBLICACIÓN (POST)
-export function publicar(event) {
-  event.preventDefault();
-  const input = document.getElementById("texto-publicacion");
+export function publicar() {
+  const input = getHtml("texto-publicacion");
   const texto = input.value.trim();
 
   if (texto === "") {
@@ -31,7 +32,7 @@ export function publicar(event) {
       if (respuesta.data) {
         input.value = "";
         obtenerTodasLasPublicaciones();
-        actualizarContadoresPerfil(); // Recargamos para ver la nueva arriba y actualizacion del contador
+         actualizarContadoresPerfil(); // Recargamos para ver la nueva arriba y actualizacion del contador
       } else {
         alert("Error al crear la publicación");
       }
@@ -42,7 +43,7 @@ export function publicar(event) {
 
 // FUNCIÓN PARA MOSTRAR LAS PUBLICACIONES
 export function obtenerTodasLasPublicaciones() {
-  const contenedor = document.getElementById("lista-publicaciones");
+  const contenedor = getHtml("lista-publicaciones");
   if (!contenedor) return;
 
   fetch(`${url}publicaciones/todas`)
@@ -83,7 +84,7 @@ export function obtenerTodasLasPublicaciones() {
 
 // FUNCIÓN PARA MOSTRAR LAS PUBLICACIONES
 export function obtenerPublicacionesUsuarios() {
-  const contenedor = document.getElementById("publicaciones-contacto");
+  const contenedor = getHtml("publicaciones-contacto");
   if (!contenedor) return;
 
   fetch(`${url}publicaciones/todas`)

@@ -1,13 +1,14 @@
 import { url } from "./api.config.js";
+import { getHtml } from "./services/html.service.js";
 
-document.getElementById("btn-registro").addEventListener("click", () => {
+getHtml("btn-registro").addEventListener("click", () => {
   registrar()
 });
 
 function registrar() {
-  const username = document.getElementById("reg-username").value;
-  const email = document.getElementById("reg-email").value;
-  const password = document.getElementById("reg-contrasena").value;
+  const username = getHtml("reg-username").value;
+  const email = getHtml("reg-email").value;
+  const password = getHtml("reg-contrasena").value;
 
   fetch(`${url}usuarios/registrar`, {
     method: "POST",
@@ -24,15 +25,15 @@ function registrar() {
     .then((data) => {
       console.log(data);
 
-      document.getElementById("reg-username").value = "";
-      document.getElementById("reg-email").value = "";
-      document.getElementById("reg-contrasena").value = "";
+      getHtml("reg-username").value = "";
+      getHtml("reg-email").value = "";
+      getHtml("reg-contrasena").value = "";
 
       if (data.insertedId) {
-        document.getElementById("register-message").innerText =
+        getHtml("register-message").innerText =
           "Usuario registrado";
         setTimeout(() => {
-          document.getElementById("register-message").innerText = "";
+          getHtml("register-message").innerText = "";
         }, 8000);
       }
     });

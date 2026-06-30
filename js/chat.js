@@ -1,4 +1,18 @@
 import { url } from "./api.config.js";
+import { getHtml } from "./services/html.service.js";
+import { loadHtml } from "./services/html.service.js";
+
+
+
+export async function btnChat(contactoUsername) {
+  const htmlChat = await loadHtml("./html/chats.html")
+  getHtml("contenido").innerHTML = htmlChat
+  getHtml("chat-username").innerText = contactoUsername
+  obtenerMensajes(contactoUsername)
+  getHtml("btn-enviarMensaje").addEventListener("click", () => {
+    enviarMensaje(contactoUsername)
+  })
+}
 
 
 export function obtenerMensajes(usernameContacto) {
@@ -7,7 +21,7 @@ export function obtenerMensajes(usernameContacto) {
   fetch(`${url}chat/mostrar-mensajes/${userLog}/${usernameContacto}`)
     .then((res) => res.json())
     .then((data) => {
-      const chat = document.getElementById("chat-mensajes");
+      const chat = getHtml("chat-mensajes");
 
       let html = "";
 
@@ -33,15 +47,16 @@ export function obtenerMensajes(usernameContacto) {
 
       setTimeout(() => {
         obtenerMensajes(usernameContacto);
-      }, 3000);
+      }, 500);
     });
 }
 
 
+
+
 export function enviarMensaje(usernameContacto) {
-  const mensaje = document.getElementById("input-mensaje").value;
+  const mensaje = getHtml("input-mensaje").value;
   const userLog = localStorage.getItem("username");
-console.log(mensaje, userLog)
   fetch(`${url}chat/registrar-mensaje`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
