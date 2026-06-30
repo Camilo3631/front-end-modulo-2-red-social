@@ -1,42 +1,46 @@
 <div>
-    <button onclick="toggleSettings(true)" title="Ajustes">x</button>
+  <button onclick="toggleSettings(true)" title="Ajustes">x</button>
+  <div>
+    <h2>Avatar</h2>
+    <div class="avatar-opciones">
+      <div alt="Avatar 1" class="avatar-opcion" id="btn-seleccionar-avatar-1">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div alt="Avatar 2" class="avatar-opcion" id="btn-seleccionar-avatar-2">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div alt="Avatar 3" class="avatar-opcion" id="btn-seleccionar-avatar-3">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div alt="Avatar 4" class="avatar-opcion" id="btn-seleccionar-avatar-4">
+        <i class="fa-solid fa-user"></i>
+      </div>
+    </div>
+  </div>
+  <div>
     <div>
-        <h2>Avatar</h2>
-        <div class="avatar-opciones">
-            <div alt="Avatar 1" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div alt="Avatar 2" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div alt="Avatar 3" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-                <i class="fa-solid fa-user"></i>
-            </div>
-            <div alt="Avatar 4" class="avatar-opcion" onclick="seleccionarAvatar(this)">
-                <i class="fa-solid fa-user"></i>
-            </div>
-        </div>
+      <h2>Cambiar username</h2>
+      <div class="config-fila">
+        <input type="text" id="nuevo-username" placeholder="Nuevo username" />
+        <button id="btn-cambiar-username">Enviar</button>
+      </div>
+      <p class="msg" id="msg-username"></p>
     </div>
     <div>
-        <div>
-            <h2>Cambiar username</h2>
-            <div class="config-fila">
-                <input type="text" id="nuevo-username" placeholder="Nuevo username" />
-                <button onclick="cambiarUsername()">Enviar</button>
-            </div>
-            <p class="msg" id="msg-username"></p>
-        </div>
-        <div>
-            <h2>Cambiar contraseña</h2>
-            <div class="config-fila">
-                <input type="password" id="nueva-contrasena" placeholder="Nueva contraseña" />
-                <button onclick="cambiarContrasena()">Enviar</button>
-            </div>
-            <p class="msg" id="msg-contrasena"></p>
-        </div>
+      <h2>Cambiar contraseña</h2>
+      <div class="config-fila">
+        <input
+          type="password"
+          id="nueva-contrasena"
+          placeholder="Nueva contraseña"
+        />
+        <button id="btn-cambiar-contrasena">Enviar</button>
+      </div>
+      <p class="msg" id="msg-contrasena"></p>
     </div>
-    <div class="config-botones">
-        <button id="btn-cerrar-sesion">Cerrar sesión</button>
-        <button class="btn-eliminar-cuenta" onclick="eliminarCuenta()">Eliminar cuenta</button>
-    </div>
+  </div>
+  <div class="config-botones">
+    <button id="btn-cerrar-sesion">Cerrar sesión</button>
+    <button id="btn-eliminar-cuenta">Eliminar cuenta</button>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 import { url } from "./api.config.js";
 import { obtenerTodasLasPublicaciones } from "./publicaciones.js";
 import { getHtml } from "./services/html.service.js";
-import { enviarMensaje } from "./chat.js";
+import { giveConfigBtnActions } from "./configuracion.js";
 
 export function actualizarContadoresPerfil() {
     const usuarioLogueado = localStorage.getItem("username");
@@ -37,6 +37,8 @@ export function actualizarContadoresPerfil() {
 export function toggleSettings(selectedConfig) {
     if (!selectedConfig) {
         getHtml("panel-config").classList.replace("reducido", "abierto");
+        giveConfigBtnActions()
+
     } else {
         getHtml("panel-config").classList.replace("abierto", "reducido");
     }
