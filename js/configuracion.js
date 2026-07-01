@@ -1,5 +1,6 @@
-import { getHtml } from "./services/html.service.js";
+import { getHtml, loadHtml } from "./services/html.service.js";
 import { doGet, doPost, doDelete, doPut } from "./services/api.service.js";
+import { iniciarSesion } from "./login.js";
 
 function cambiarUsername() {
   let email = localStorage.getItem("email");
@@ -22,7 +23,6 @@ function cambiarContrasena() {
 }
 
 function seleccionarAvatar(avatar) {
-  console.log("avatar", avatar);
   getHtml("foto-perfil").style.background = avatar;
 }
 
@@ -32,8 +32,14 @@ async function eliminarCuenta() {
   console.log(res);
 }
 
-function cerrarSesion() {
-  console.log("cerrar sesion");
+async function cerrarSesion() {
+  getHtml("contenido").innerHTML = await loadHtml("./html/login.html");
+  getHtml("btn-iniciar-sesion").addEventListener("click", () => {
+    iniciarSesion();
+  });
+  localStorage.setItem("email", "");
+  localStorage.setItem("id", "");
+  localStorage.setItem("username", "");
 }
 
 export function giveConfigBtnActions() {
