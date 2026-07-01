@@ -5,7 +5,6 @@ import { navPerfil, toggleSettings } from "./perfil.js";
 import { getHtml, loadHtml } from "./services/html.service.js";
 import { iniciarSesion } from "./login.js";
 
-getHtml("btn-iniciar-sesion").addEventListener("click", iniciarSesion);
 getHtml("contenido").innerHTML = await loadHtml("./html/login.html");
 getHtml("btn-iniciar-sesion").addEventListener("click", () => {
   iniciarSesion();
