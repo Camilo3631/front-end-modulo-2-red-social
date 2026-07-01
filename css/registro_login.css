@@ -3,13 +3,13 @@ h1 {
 }
 
 .contenido-login {
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto 0;
 }
 
-/* ── Secciones ── */
 .seccion {
   display: flex;
   flex-direction: column;

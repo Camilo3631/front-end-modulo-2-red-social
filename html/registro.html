@@ -1,45 +1,48 @@
 <!doctype html>
 <html lang="esp">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:;base64,=">
-    <title>Crear cuenta</title>
-    <link rel="icon" href="data:;base64,=">
-    <link rel="stylesheet" href="../css/style.css" />
-  </head>
-  <body>
-    <section>
-      <div class="seccion">
-        <h1>Crear cuenta</h1>
-        <div class="field">
-          <label for="reg-username">Nombre de usuario</label>
-          <input type="text" id="reg-username" placeholder="mi_usuario" />
-        </div>
 
-        <div class="field">
-          <label for="reg-email">Correo electrónico</label>
-          <input type="email" id="reg-email" placeholder="usuario@email.com" />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:;base64,=">
+  <title>Crear cuenta</title>
+  <link rel="icon" href="data:;base64,=">
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
 
-        <div class="field">
-          <label for="reg-contrasena">Contraseña</label>
-          <input type="password" id="reg-contrasena" placeholder="Mínimo 8 caracteres"/>
-        </div>
+<body>
+  <section>
+    <div class="seccion">
+      <h1>Crear cuenta</h1>
+      <div class="field">
+        <label for="reg-username">Nombre de usuario</label>
+        <input type="text" id="reg-username" placeholder="mi_usuario" />
+      </div>
 
-        <button id="btn-registro">Registrarse</button>
-        <div class="mensaje" id="msg-registro"></div>
-        
-        <span class="card__footer">
+      <div class="field">
+        <label for="reg-email">Correo electrónico</label>
+        <input type="email" id="reg-email" placeholder="usuario@email.com" />
+      </div>
+
+      <div class="field">
+        <label for="reg-contrasena">Contraseña</label>
+        <input type="password" id="reg-contrasena" placeholder="Mínimo 8 caracteres" />
+      </div>
+
+      <button id="btn-registro">Registrarse</button>
+      <div class="mensaje" id="msg-registro"></div>
+
+      <span class="card__footer">
         ¿Ya tienes cuenta?
         <a href="../index.html">Inicia sesión</a>
       </span>
-    
+      <span id="register-message" style="color: red;"></span>
+
     </div>
-    <span id="register-message"></span>
-    </section>
-    <footer>
-      </footer>
-    <script type="module" src="../js/registro.js"></script>
-  </body>
+  </section>
+  <footer>
+  </footer>
+  <script type="module" src="../js/registro.js"></script>
+</body>
+
 </html>

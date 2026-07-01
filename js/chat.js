@@ -1,35 +1,28 @@
-import { url } from "./api.config.js";
-import { getHtml } from "./services/html.service.js";
-import { loadHtml } from "./services/html.service.js";
+import { doGet, doPost } from "./services/api.service.js";
+import { getHtml, loadHtml } from "./services/html.service.js";
 
+let usernameContacto = ""
 
-
-export async function btnChat(contactoUsername) {
+export async function navChat(contacto) {
   const htmlChat = await loadHtml("./html/chats.html")
   getHtml("contenido").innerHTML = htmlChat
-  getHtml("chat-username").innerText = contactoUsername
-  obtenerMensajes(contactoUsername)
+  getHtml("chat-username").innerText = contacto
+  usernameContacto = contacto
+  obtenerMensajes()
   getHtml("btn-enviarMensaje").addEventListener("click", () => {
-    enviarMensaje(contactoUsername)
+    enviarMensaje(contacto)
   })
 }
 
-
-export function obtenerMensajes(usernameContacto) {
+export async function obtenerMensajes() {
   const userLog = localStorage.getItem("username");
+  const res = await doGet(`chat/mostrar-mensajes/${userLog}/${usernameContacto}`)
+  const chat = getHtml("chat-mensajes");
+  let html = "";
 
-  fetch(`${url}chat/mostrar-mensajes/${userLog}/${usernameContacto}`)
-    .then((res) => res.json())
-    .then((data) => {
-      const chat = getHtml("chat-mensajes");
-
-      let html = "";
-
-      data.forEach((mensaje) => {
-        const userClass =
-          userLog === mensaje.emisor ? "logged" : "contact";
-
-        html += `
+  res.forEach((mensaje) => {
+    const userClass = userLog === mensaje.emisor ? "logged" : "contact";
+    html += `
           <div class="${userClass}">
             <div class="burbuja-chat">
               <p><strong>${mensaje.emisor}</strong></p>
@@ -38,37 +31,17 @@ export function obtenerMensajes(usernameContacto) {
             </div>
           </div>
         `;
-      });
+  });
+  if (chat) chat.innerHTML = html
 
-      // Solo actualiza si realmente cambió
-      if (chat.innerHTML !== html) {
-        chat.innerHTML = html;
-      }
-
-      setTimeout(() => {
-        obtenerMensajes(usernameContacto);
-      }, 500);
-    });
+  setTimeout(async () => { await obtenerMensajes() }, 500)
 }
 
-
-
-
-export function enviarMensaje(usernameContacto) {
-  const mensaje = getHtml("input-mensaje").value;
-  const userLog = localStorage.getItem("username");
-  fetch(`${url}chat/registrar-mensaje`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      emisor: userLog,
-      receptor: usernameContacto,
-      mensaje: mensaje,
-      fecha: new Date().toLocaleString(),
-    }),
+export async function enviarMensaje(usernameContacto) {
+  const res = await doPost(`chat/registrar-mensaje`, {
+    emisor: localStorage.getItem("username"),
+    receptor: usernameContacto,
+    mensaje: getHtml("input-mensaje").value,
+    fecha: new Date().toLocaleString(),
   })
-    .then((res) => res.json())
-    .then((data) => {
-
-    });
 }

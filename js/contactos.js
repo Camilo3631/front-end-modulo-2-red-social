@@ -1,4 +1,3 @@
-import { url } from "./api.config.js";
 import { doPost, doGet, doDelete } from "./services/api.service.js";
 import { loadHtml, getHtml } from "./services/html.service.js";
 
@@ -23,7 +22,7 @@ export async function navContactos() {
         : contacto.username_contacto1;
 
     getHtml("lista-contactos").innerHTML += `
-              <div class="card-contactos" onclick="btnChat('${contactoUsername}')">
+              <div class="card-contactos" onclick="navChat('${contactoUsername}')">
                 <p><strong>${contactoUsername}</strong></p>
                 <div class="btns-contacto">
                   <button><i class="fa-solid fa-x" id="dejarSeguir"></i> Dejar de seguir</button>

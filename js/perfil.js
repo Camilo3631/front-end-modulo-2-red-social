@@ -1,67 +1,43 @@
 import { url } from "./api.config.js";
 import { obtenerTodasLasPublicaciones } from "./publicaciones.js";
-import { getHtml } from "./services/html.service.js";
+import { getHtml, loadHtml } from "./services/html.service.js";
 import { giveConfigBtnActions } from "./configuracion.js";
+import { doGet } from "./services/api.service.js";
 
-export function actualizarContadoresPerfil() {
+export async function actualizarContadoresPerfil() {
     const usuarioLogueado = localStorage.getItem("username");
     const contPostsElement = getHtml("contador-posts");
     const contSiguiendoElement = getHtml("contador-siguiendo");
 
-    if (!contPostsElement && !contSiguiendoElement) return;
-    // Contador de Publicaciones
-    // 
-    fetch(`${url}publicaciones/todas`)
-        .then((res) => res.json())
-        .then((respuesta) => {
-            const publicaciones = respuesta.data || [];
-            const misPublicaciones = publicaciones.filter(post => post.username === usuarioLogueado);
+    const res = await doGet(`publicaciones/todas`)
+    const contactos = await doGet(`contactos/${usuarioLogueado}`)
 
-            if (contPostsElement) {
-                contPostsElement.innerText = misPublicaciones.length;
-            }
-        })
-        .catch((err) => console.error("Error al contar publicaciones:", err));
+    const publicaciones = res.data || [];
+    const misPublicaciones = publicaciones.filter(post => post.username === usuarioLogueado);
 
-    // 3. Contador de Seguidos / Contactos
-    fetch(`${url}contactos/${usuarioLogueado}`)
-        .then((res) => res.json())
-        .then((contactos) => {
-            if (contSiguiendoElement) {
-                contSiguiendoElement.innerText = contactos.length;
-            }
-        })
-        .catch((err) => console.error("Error al contar contactos:", err));
+    contPostsElement.innerText = misPublicaciones.length;
+    contSiguiendoElement.innerText = contactos.length;
 }
 
 export function toggleSettings(selectedConfig) {
     if (!selectedConfig) {
         getHtml("panel-config").classList.replace("reducido", "abierto");
         giveConfigBtnActions()
-
     } else {
         getHtml("panel-config").classList.replace("abierto", "reducido");
     }
 }
 
-export function navPerfil() {
-    fetch("./html/perfil.html")
-        .then((res) => res.text())
-        .then((html) => {
-            const usernamePerfil = localStorage.getItem("username");
-            getHtml("contenido").innerHTML = html;
-            getHtml("username").innerText = usernamePerfil;
+export async function navPerfil() {
+    const html = await loadHtml("./html/perfil.html")
+    const usernamePerfil = localStorage.getItem("username");
+    getHtml("contenido").innerHTML = html;
+    getHtml("username").innerText = usernamePerfil;
 
-            obtenerTodasLasPublicaciones();
-            actualizarContadoresPerfil();
-            fetch("./html/configuracion.html")
-                .then((res) => res.text())
-                .then((html) => {
-                    getHtml("panel-config").innerHTML = html;
-                })
+    obtenerTodasLasPublicaciones();
+    actualizarContadoresPerfil();
 
-        })
-        .catch((err) =>
-            console.error("Error al cargar la pantalla de perfil:", err),
-        );
+    const configHtml = await loadHtml("./html/configuracion.html")
+    getHtml("panel-config").innerHTML = configHtml;
+
 };
