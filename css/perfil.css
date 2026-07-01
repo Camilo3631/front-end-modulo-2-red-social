@@ -206,7 +206,7 @@ aside h2 {
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: #ccc;
+  /* background: #ccc; */
   cursor: pointer;
   border: 3px solid transparent;
   object-fit: cover;

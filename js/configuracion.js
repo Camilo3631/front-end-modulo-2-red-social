@@ -1,16 +1,29 @@
 import { getHtml } from "./services/html.service.js";
-import { doGet, doPost, doDelete } from "./services/api.service.js";
+import { doGet, doPost, doDelete, doPut } from "./services/api.service.js";
 
 function cambiarUsername() {
-  console.log("cambiar username");
+  let email = localStorage.getItem("email");
+  let username = getHtml("nuevo-username").value;
+  let contrasena = getHtml("nueva-contrasena").value;
+  doPut(`usuarios/modificar-cuenta/${email}`, {
+    username: username,
+    contrasena: contrasena,
+  });
 }
 
 function cambiarContrasena() {
-  console.log("cambiar contrasena");
+  let email = localStorage.getItem("email");
+  let username = localStorage.getItem("username");
+  let contrasena = getHtml("nueva-contrasena").value;
+  doPut(`usuarios/modificar-cuenta/${email}`, {
+    username: username,
+    contrasena: contrasena,
+  });
 }
 
 function seleccionarAvatar(avatar) {
   console.log("avatar", avatar);
+  getHtml("foto-perfil").style.background = avatar;
 }
 
 async function eliminarCuenta() {
@@ -38,15 +51,15 @@ export function giveConfigBtnActions() {
   });
 
   getHtml("btn-seleccionar-avatar-1").addEventListener("click", () => {
-    seleccionarAvatar(1);
+    seleccionarAvatar("rgb(154, 227, 154)");
   });
   getHtml("btn-seleccionar-avatar-2").addEventListener("click", () => {
-    seleccionarAvatar(2);
+    seleccionarAvatar("rgb(228, 181, 115)");
   });
   getHtml("btn-seleccionar-avatar-3").addEventListener("click", () => {
-    seleccionarAvatar(3);
+    seleccionarAvatar("rgb(200, 118, 236)");
   });
   getHtml("btn-seleccionar-avatar-4").addEventListener("click", () => {
-    seleccionarAvatar(4);
+    seleccionarAvatar("rgb(151, 193, 242)");
   });
 }
